@@ -1,0 +1,72 @@
+Todo Modbay
+Updated 20-02-2017
+HTML
+	--Sider der mangler--
+		Hilfe menu
+			Help section, til f.eks server help, script help, script report, buy report, report af leakz osv.
+
+
+		About
+			Skal sådanset bare laves en about side, så man lige får et intryk af hvad fanden det er siden går ud på, hvis det på det her tidspunkt skulle være en mental udfordring.
+			Tearms of use er også en vigtig del, som vi ligger ind under about menuen.
+
+
+		Dashboard
+			Hvad skal der være under dashboard ? 
+			Salg af scripts (Hvor mange man har solgt i tiden løb)
+			Køb af scripts. (Hvilke har man købt, notefikationer til hvis scripts bliver updateret, så man nemt kan hente nye versioner)
+			Message area, hvor man kan skrive til de forskellige udviklere, hvis man evt har problemer emd sit køb af script.
+
+		Serverhelp (Evt fjerne den? sætte det i forum) Ligger dette ind i forum, da det ikke er os der kommer til at hjælpe vedkommende med dette.
+
+
+		job section
+			Post af jobs. (Det skal være lige til og ikke det store hulumhej)
+			Tænker der skal en job side, også kan man søge i kategorier. såsom (Minecraft, serverside, world modelling)
+
+		sider til alle spil
+			Tænker lidt det skal være det samme som ved job section, vi smider alle scripts ind på en enkelt side for sig, hvori man kan søge i kategorier.
+
+		Script apply page.
+			Her ved jeg ikke hvad vi gør med hensyn til apply, fordi vi har jo ikke styr på alle scripts til alle games, så vi må have nogen som kan sidde og godkende scripts.
+			Vi skal jeg havde lavet et system så fok ikke poster andres arbejde og tjener på det.
+
+		Side til checkout ved køb af mod.
+			Det der med en "basket" man kan ligge scripts i, du ved indkøbskurv. og checkout det må Anders stå for.
+
+		Login.
+			Login er oppe i headeren, så vi ikke skal lave en seperat side til det, så der mangler kun seperat side til register.
+
+		Game page generator, for de spil vi evt ikke har, så folk kan lave et apply.
+			Coming soon.
+
+		Signup server.
+
+
+
+
+
+		En form for auto script, der generere en ny side når script uploades af content creators.
+
+
+Done Html Pages
+	(firstitem.html) -- script sell page 
+	(gmod.html) -- Game page, page that shows scripts for sertain game 
+	(market.html) -- page to select game
+	(index.html) -- startpage
+	(forum pgae)
+
+Undone Html Pages
+	(about.html)
+	(help.html)
+	(apply.html) -- page to apply for script
+	(Jobs.html) -- job section, seach for jobs
+	(jobpost.html) -- job post section
+	(checkout.html) -- Checkout page for bought scripts
+		(profile.html) -- Profile page, with personal info
+		(inbox.html) -- Inbox page, to see buyers msg f.eks.
+		
+	(dashboard.html) -- Dashboard
+	(contact.html) -- Contact page
+	(tac.html) -- Tearms and Conditions
+	(fag.html) -- FAQ page
