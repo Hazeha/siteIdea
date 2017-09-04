@@ -18,9 +18,9 @@
     <div id="wrapper">
         
         <?php include 'includes/header.php';?> 
-        <?php include 'includes/data/scripts/game_sidenav.php'; ?>
         
         <div id="page-wrapper">
+
             <div class="container-fluid">
 
 
@@ -57,29 +57,13 @@
                                     </div>
                                     <div class="tab-pane fade" id="reviews">  <!-- Her skal der programmeres et comment system.  -->
                                         <hr>
-                                        <!-- Posted Comments -->
                                         <!-- Comment Skal laves Helt om aner ikke hvordan -->
-                                        <div class="media">
-                                            <a class="pull-left" href="#"><img alt="" class="media-object" src="http://placehold.it/64x64"></a>
-                                            <div class="media-body">
-                                                <h4 class="media-heading">Paul Pilfinger <small>August 25, 2014 at 9:30 PM</small></h4>A very nice addon for Roleplay server ;) Changes other drugs addon. A good recipe. All simply magnificent. Just buy this script. Sorry for my English ;)
-                                            </div>
-                                        </div><!-- Comment -->
-                                        <div class="media">
-                                            <a class="pull-left" href="#"><img alt="" class="media-object" src="http://placehold.it/64x64"></a>
-                                            <div class="media-body">
-                                                <h4 class="media-heading">Dr. Carsten <small>August 25, 2017 at 9:30 PM</small></h4>Good working meth system and really easy to use. Uses a more modern approach and realistic than the other competitors. <!-- Nested Comment -->
-                                                <div class="media">
-                                                    <a class="pull-left" href="#"><img alt="" class="media-object" src="http://placehold.it/64x64"></a>
-                                                    <div class="media-body">
-                                                        <h4 class="media-heading">Author <small>August 25, 2017 at 9:30 PM</small></h4>Thanks. Sorry for my English ;)
-                                                    </div>
-                                                </div><!-- End Nested Comment -->
-                                            </div>
-                                        </div>
-                                        <hr>
+
+                                       <?php include 'includes/data/scripts/review_post.php'; ?> 
+
+
                                         <div class="well">
-                                            <h4>Leave a Comment:</h4>
+                                            <h4>Leave a Review:</h4>
                                             <form role="form">
                                                 <div class="form-group">
                                                     <textarea class="form-control" rows="3"></textarea>
@@ -123,7 +107,6 @@
                         </div>
                     </div>
 
-                <!-- Side Widget Well -->
                 
                      <div class="panel panel-grey">
                         <div class="panel-heading">
@@ -171,11 +154,7 @@
                                 <div class="col-xs-3">
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                <i class="fa fa-star fa-3x"></i>
-                                <i class="fa fa-star fa-3x"></i>
-                                <i class="fa fa-star fa-3x"></i>
-                                <i class="fa fa-star-o fa-3x"></i>
-                                <i class="fa fa-star-o fa-3x"></i>
+                                <?php echo $avg_rating; ?>
                                     <div>Ratings</div>
                                 </div>
                             </div>

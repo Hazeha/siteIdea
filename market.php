@@ -12,9 +12,15 @@
 <body>
     <div id="wrapper">
         
-        <?php include 'includes/header.php';?>                                <!-- OBS NÆSTEN OK -->
+        <?php include 'includes/header.php';?>
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-sitepage">
+                    <h3><strong>Games</strong></h3>
+                </li>                                <!-- OBS NÆSTEN OK -->
         <?php include 'includes/data/scripts/game_sidenav.php'; ?>
-         
+        </ul> 
+         </div>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">

@@ -8,4 +8,4 @@
 		$totalscripts = $script_info10->num_rows;
 	echo '<h2 class="pull-right"> ' . $totalscripts . ' </h2>';
 	}
-?>
+?> 

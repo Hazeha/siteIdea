@@ -8,16 +8,11 @@
         while ($game_post = $games_info->fetch_assoc()) {
     
             echo '
-            <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-sitepage">
-                    <h3><strong>Games</strong></h3>
-                </li>
-                <li>
+            
+                <li> 
                     <a href=" ' . $game_post["game_link"] . ' "> ' . $game_post["name"] . ' </a>
                 </li> 
-                </ul>
-            </div>               
+                            
             ' ;
         }
     }

@@ -6,9 +6,7 @@
     $script_selected = mysqli_query($conn, "SELECT name, description, features, game_id, price, sales, logo_link, script_link, review_count, review_rating, upload_date, update_date FROM script_tb WHERE id='1' ");
 
     $script_author = mysqli_query($conn, "SELECT id, username, logo FROM client_tb WHERE id='1'");
-
-    $script_review_sum = mysqli_query($conn, "SELECT AVG(rating) FROM review_table WHERE product_id='1'");
-
+    $script_review_sum = mysqli_query($conn, "SELECT AVG(rating) AS int FROM review_tb WHERE product_id='1'");
 
     while ($post = $script_selected->fetch_assoc()) {
         $script_name = $post["name"];
@@ -31,4 +29,52 @@
         $author_id = $post_author["id"];
 
     }
+        # code...
+    
+    if ($script_review_sum >= 0) {
+
+        $avg_rating = '<i class="fa fa-star fa-2x"></i> 
+                        <i class="fa fa-star-o fa-2x"></i>
+                        <i class="fa fa-star-o fa-2x"></i> 
+                        <i class="fa fa-star-o fa-2x"></i>
+                        <i class="fa fa-star-o fa-2x"></i>';
+        if ($script_review_sum >= 1) {
+
+            $avg_rating = '<i class="fa fa-star fa-2x"></i>
+                        <i class="fa fa-star fa-2x"></i>
+                        <i class="fa fa-star-o fa-2x"></i>
+                        <i class="fa fa-star-o fa-2x"></i>
+                        <i class="fa fa-star-o fa-2x"></i>';
+            if ($script_review_sum >= 2) {
+
+                $avg_rating = '<i class="fa fa-star fa-2x"></i>
+                        <i class="fa fa-star fa-2x"></i>
+                        <i class="fa fa-star fa-2x"></i>
+                        <i class="fa fa-star-o fa-2x"></i>
+                        <i class="fa fa-star-o fa-2x"></i>';
+                if ($script_review_sum >= 3) {
+
+                    $avg_rating = '<i class="fa fa-star fa-2x"></i>
+                        <i class="fa fa-star fa-2x"></i>
+                        <i class="fa fa-star fa-2x"></i>
+                        <i class="fa fa-star fa-2x"></i>
+                        <i class="fa fa-star-o fa-2x"></i>';   
+                    if ($script_review_sum >= 4) {
+
+                        $avg_rating = '<i class="fa fa-star fa-2x"></i>
+                        <i class="fa fa-star fa-2x"></i>
+                        <i class="fa fa-star fa-2x"></i>
+                        <i class="fa fa-star fa-2x"></i>
+                        <i class="fa fa-star fa-2x"></i>';
+                        
+                        
+                    }
+                    
+                }
+                
+            }
+        }
+        # code...
+    }
+   
 ?>	
