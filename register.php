@@ -13,12 +13,27 @@
 	<script src="js/bootstrap.min.js">
 	</script>
 </head><!-- Bootstrap Core JavaScript -->
-<body>
+<body>	
+	<?php include 'includes/header.php';?>
 	<div class="wrapper">
-		<!-- Header start-->
-        <?php include 'includes/header.php';?>
-        <!--Header Slut-->
-	</div><!-- Footer -->
+                            <form role="form">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <input autofocus="" class="form-control" name="email" placeholder="E-mail" type="email">
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control" name="password" placeholder="Password" type="password" value="">
+                                    </div>
+                                    <div class="checkbox">
+                                        <label class="pull-right"><input name="remember" type="checkbox" value="Remember Me"> Remember Me</label>
+
+                                    <a href="register.php">Register</a>
+                                    </div><a class="btn btn-lg btn-success btn-block" href="dashboard.php">Login</a>
+                                </fieldset>
+                            </form>
+                        
+	</div>
+
 	<footer id="footer">
             <?php include 'includes/footer.php';?>
         </footer>

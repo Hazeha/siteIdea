@@ -1,5 +1,5 @@
 <?php include 'includes/data/scripts/data_get.php';?>
-
+<?php include 'includes/data/scripts/review_rounder.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +13,7 @@
     <link href="css/sb-admin.css" rel="stylesheet"><!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body>c
     
     <div id="wrapper">
         
@@ -68,6 +68,7 @@
                                                 <div class="form-group">
                                                     <textarea class="form-control" rows="3"></textarea>
                                                 </div><button class="btn btn-primary" type="submit">Submit</button>
+                                                <?php echo $rounded_review; ?> 
                                             </form>
                                         </div>
                                     </div>
@@ -93,19 +94,11 @@
                             </a>
                 </div>
 
-            <div class="panel panel-grey">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-shopping-cart fa-3x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge"><?php echo $script_sales; ?></div>
-                                    <div>Sales</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+
+                <button type="button" class="btn btn-primary btn-lg btn-block">Buy Now</button> <br>
+
+                   
 
                 
                      <div class="panel panel-grey">
@@ -126,15 +119,30 @@
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <i class="fa glyphicon-refresh fa-3x"></i>
+                                    <i class="fa fa-shopping-cart fa-3x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge"><?php echo $script_update; ?></div>
-                                    <div>Days Since Last Update</div>
+                                    <div class="huge"><?php echo $script_sales; ?></div>
+                                    <div>Sales</div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <div class="panel panel-grey">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                <?php echo $avg_rating; ?>
+                                    <div>Ratings</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
                     <div class="panel panel-grey">
                         <div class="panel-heading">
                             <div class="row">
@@ -148,22 +156,23 @@
                             </div>
                         </div>
                     </div>
-                     <div class="panel panel-grey">
+                    
+                    <div class="panel panel-grey">
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
+                                    <i class="fa glyphicon-refresh fa-3x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                <?php echo $avg_rating; ?>
-                                    <div>Ratings</div>
+                                    <div class="huge"><?php echo $script_update; ?></div>
+                                    <div>Days Since Last Update</div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                
 
                 
-                     <button type="button" class="btn btn-primary btn-lg btn-block">Buy Now</button>
+                     
                     </div>
 
             </div><!-- /.container-fluid -->

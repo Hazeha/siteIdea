@@ -5,8 +5,7 @@
 	if ($review_select->num_rows > 0) {
 
 		while ($post = $review_select->fetch_assoc()) {
-		//	$client_select = mysqli_query($conn, "SELECT id, name FROM review_tb WHERE id="$post["client_id"]"");
-		//	$client_id = $post["client_id"];
+		
 		switch ($post["rating"]) {
 			case '1':
 				$rating = '<i class="fa fa-star fa-2x"></i> 
