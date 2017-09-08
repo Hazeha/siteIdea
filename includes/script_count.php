@@ -6,6 +6,6 @@
 	
 	if ($script_info10->num_rows > 0) {
 		$totalscripts = $script_info10->num_rows;
-	echo '<h2 class="pull-right"> ' . $totalscripts . ' </h2>';
+	echo '<h2 class="pull-right"> ' . $totalscripts . ' Scripts</h2>';
 	}
 ?> 

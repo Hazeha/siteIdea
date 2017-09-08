@@ -17,7 +17,7 @@
                            	<p>' . $post["description"] . '</p>
                         </div>
                         <div class="ratings">
-                           	<p class="pull-right">' . $post["review_count"] . ' Reviews</p>                          
+                           	<p class="pull-right">' . $review_count . ' Reviews</p>                          
                           	<p>'. $avg_rating . '</p>                            
                         </div>
                     </div>

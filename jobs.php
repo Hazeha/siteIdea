@@ -89,7 +89,7 @@
             <!--Page Header Start-->
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="pull-right"><?php echo $total_jobs; ?></h2>
+                    <h2 class="pull-right"><?php echo $total_jobs; ?> Jobs</h2>
                     <h1 class="page-header"><strong>New Jobs</strong></h1>
                 </div>
             </div>
