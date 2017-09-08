@@ -2,7 +2,6 @@
 
 /* code for getting data from db */
     include 'includes/server/connect.php';
-    include 'includes/data/scripts/review_rounder.php';
     $script_selected = mysqli_query($conn, "SELECT name, description, features, game_id, price, sales, logo_link, script_link, review_count, review_rating, upload_date, update_date FROM script_tb WHERE id='1' ");
 
     $script_author = mysqli_query($conn, "SELECT id, username, logo FROM client_tb WHERE id='1'");

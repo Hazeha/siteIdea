@@ -1,15 +1,7 @@
-/*!
- * Start Bootstrap - SB Admin (http://startbootstrap.com/)
- * Copyright 2013-2016 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
- */
-
-/* Global Styles */
-
 body {
     margin-top: 100px;
     background-color: #fff;
-}
+} 
 
 @media(min-width:768px) {
     body {
@@ -179,17 +171,7 @@ ul.alert-dropdown {
     width: 200px;
     color: #999999;
 }
-/* Flot Chart Containers */
 
-.flot-chart {
-    display: block;
-    height: 400px;
-}
-
-.flot-chart-content {
-    width: 100%;
-    height: 100%;
-}
 
 /* Custom Colored Panels */
 

@@ -9,10 +9,7 @@
             $review_rating = $review_rating + $post["rating"];
         }
         $rounded_review = round($review_rating / $review_count);
-
-        
-
-    }
+   }
 
     if ($rounded_review == 0) {
         

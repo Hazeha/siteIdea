@@ -1,6 +1,7 @@
 <?php
 	include 'includes/server/connect.php';
-  include 'includes/data/scripts/data_get.php';
+	include 'includes/data/scripts/data_get.php';
+	include 'includes/data/scripts/review_rounder.php';
 	$script_info1 = mysqli_query($conn, "SELECT id, name, description, price, logo_link, script_link, review_count, review_rating FROM script_tb");
 	
 	if ($script_info1->num_rows > 0) {
