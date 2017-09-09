@@ -114,7 +114,14 @@
 												</div><!-- /.panel-heading -->
 												<div class="panel-body">
 													<div class="list-group">
-														<a class="list-group-item" href="#"><i class="fa fa-comment fa-fw"></i> Scripts for sale <span class="pull-right text-muted small"><em>4</em></span></a> <a class="list-group-item" href="#"><i class="fa fa-twitter fa-fw"></i> Updated scripts <span class="pull-right text-muted small"><em>9001</em></span></a> <a class="list-group-item" href="#"><i class="fa fa-shopping-cart fa-fw"></i> Brought Scripts <span class="pull-right text-muted small"><em>9</em></span></a> <a class="list-group-item" href="#"><i class="fa fa-shopping-cart fa-fw"></i> Sold Scripts <span class="pull-right text-muted small"><em>9</em></span></a> <a class="list-group-item" href="#"><i class="fa fa-money fa-fw"></i> Payments <span class="pull-right text-muted small"><em>1337</em></span></a>
+														<a class="list-group-item" href="#"><i class="fa fa-comment fa-fw"></i> Scripts for sale <span class="pull-right text-muted small"><em>4</em></span>
+														</a> 
+														<a class="list-group-item" href="#"><i class="fa fa-twitter fa-fw"></i> Updated scripts <span class="pull-right text-muted small"><em>9001</em></span></a> 
+														<a class="list-group-item" href="#"><i class="fa fa-shopping-cart fa-fw"></i> Brought Scripts <span class="pull-right text-muted small"><em>9</em></span>
+														</a> 
+														<a class="list-group-item" href="#"><i class="fa fa-shopping-cart fa-fw"></i> Sold Scripts <span class="pull-right text-muted small"><em>9</em></span></a> 
+														<a class="list-group-item" href="#"><i class="fa fa-money fa-fw"></i> Payments <span class="pull-right text-muted small"><em>1337</em></span>
+														</a>
 													</div>
 												</div><!-- /.panel-body -->
 											</div>
@@ -160,77 +167,12 @@
 												Sold Scripts
 											</h2>
 										</center>
-										<hr>
-										<div>
-											<div class="col-lg-9">
-												<div class="panel panel-default">
-													<div class="panel-body">
-														<div class="panel-heading pull-right">
-															<strong>Script Name</strong>
-															<hr>
-															<ul>
-																<li>Price :
-																</li>
-																<li>Sales :
-																</li>
-																<li>Date Added :
-																</li>
-																<li>Game :
-																</li>
-																<li>
-																	<a href="#">Put on Sale</a>
-																</li>
-															</ul>
-														</div><img class="img-thumbnail" height="150px" src="img/fallout-logo.jpg" width="300px">
-													</div><!-- /.panel-body -->
-													<div class="panel panel-default">
-														<div class="panel-body">
-															<div class="panel-heading pull-right">
-																<strong>Script Name</strong>
-																<hr>
-																<ul>
-																	<li>Price :
-																	</li>
-																	<li>Sales :
-																	</li>
-																	<li>Date Added :
-																	</li>
-																	<li>Game :
-																	</li>
-																	<li>
-																		<a href="#">Put on Sale</a>
-																	</li>
-																</ul>
-															</div><img class="img-thumbnail" height="150px" src="img/fallout-logo.jpg" width="300px">
-														</div><!-- /.panel-body -->
-													</div>
-												</div>
-                                            </div>
-                                            <div class="col-lg-3 pull-right">
-                                            <div class="panel panel-default">
-														<div class="panel-body">
-															<div class="panel-heading">
-																<strong>Script Name</strong>
-																<hr>
-																<ul>
-																	<li>Price :
-																	</li>
-																	<li>Sales :
-																	</li>
-																	<li>Date Added :
-																	</li>
-																	<li>Game :
-																	</li>
-																	<li>
-																		<a href="#">Put on Sale</a>
-																	</li>
-																</ul>
-															</div>
-														</div><!-- /.panel-body -->
-													</div>
-                                            </div>
-										</div>
-                                    </div>
+										<hr>	
+										<?php include 'includes/data/users/sold_script.php'; ?>	
+										
+                    					
+
+									</div>
                                     
                                     <div class="tab-pane fade" id="bought_scripts">
 										<center>
@@ -239,7 +181,7 @@
 											</h2>
 										</center>
 										<hr>																					
-											<div class="col-lg-9">
+											<div class="col-lg-12">
 												<?php include 'includes/data/users/bought_script.php';?>
 											</div>
 									</div>
@@ -252,13 +194,9 @@
 											</h2>
                                         </center>                                      
                                         <hr>
-                                        
-                                        <div class="col-lg-9">
-												<div class="panel panel-default">
-													<div class="panel-body">
-                                                    </div>
-                                                </div>
+                                        <div class="col-lg-3">
                                         </div>
+                                        <?php include 'includes/data/users/upload_script.php'; ?>
                                     </div>
 
                                     <div class="tab-pane fade" id="settings">

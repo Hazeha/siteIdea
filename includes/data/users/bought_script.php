@@ -9,7 +9,7 @@
 			
 		}
 	}
-	$scripts_view = mysqli_query($conn, "SELECT id, name, description, game_id price, logo_link, script_link, upload_date, update_date FROM script_tb WHERE id=$script_id");
+	$scripts_view = mysqli_query($conn, "SELECT id, name, description, game_id, price, logo_link, script_link, upload_date, update_date FROM script_tb WHERE id=$script_id");
 			if($scripts_view->num_rows > 0) {
 				while($script_post = $scripts_view->fetch_assoc())
 				{
@@ -17,7 +17,7 @@
 				<div class="panel panel-default">
 					<div class="panel-body">
 					
-						<div class="panel-heading pull-right">
+						<div class="panel-heading pull-right col-lg-3">
 							<strong> '.$script_post["name"].' </strong>
 						<hr>
 							<ul>
@@ -33,11 +33,14 @@
 								</li>
 							</ul>
 						</div>
-						<div class="panel-body">
-						<img class="img-thumbnail pull-left" height="200px" src="data:image/jpeg;base64,' . base64_encode( $script_post['logo_link']) . '" width="200px">
+						<div class="panel-body col-lg-3">
+						<img class="img-thumbnail pull-left" height="300px" src="data:image/jpeg;base64,' . base64_encode( $script_post['logo_link']) . '" width="500px">
+						
+						</div>
+						<div class="panel-body col-lg-6">
 						<p> ' . $script_post["description"] . '</p>
 						</div>
-					</div><!-- /.panel-body -->
+					</div>
 				</div>
 				  ';
 				} 
