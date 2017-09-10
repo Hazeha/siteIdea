@@ -23,13 +23,13 @@ echo '
 <footer id="footer">
     <ul class="menu">
         <li>
-            <h3>Registered Users ' . $total_user . '</h3>
+            <h3>' . $total_user . ' Registered Users</h3>
         </li>
         <li>
-            <h3>Scripts for sale '. $total_script .'</h3>
+            <h3>'. $total_script .' Scripts for sale </h3>
         </li>
         <li>
-            <h3>Total jobs avaible '. $total_job .'</h3>
+            <h3>'. $total_job .' Jobs avaible </h3>
         </li>
         <li>
             <h3>' . $total_game . ' Different Games</a></h3>

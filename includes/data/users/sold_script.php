@@ -7,10 +7,10 @@ include 'includes/server/connect.php';
 				while($script_post = $scripts_view->fetch_assoc())
 				{
 				echo '
-											<div class="col-lg-5">
+											<div class="col-lg-6">
 												<div class="panel panel-default">
 													<div class="panel-body">
-														<div class="panel-heading pull-right">
+														<div class="panel-heading pull-right  col-lg-5">
 															<strong>Script Name</strong>
 															<hr>
 															<ul>
@@ -27,7 +27,9 @@ include 'includes/server/connect.php';
 																</li>
 															</ul>
 														</div>
-														<img class="img-thumbnail" height="150px" src="data:image/jpeg;base64,' . base64_encode( $script_post['logo_link']) . '" width="300px">
+														<div class="col-lg-7">
+														<img class="img-thumbnail" src="data:image/jpeg;base64,' . base64_encode( $script_post['logo_link']) . '">
+														</div>
 													</div>											
 												</div>
 											</div>
