@@ -207,17 +207,17 @@ hr {
 #sidebar-wrapper {
     z-index: 1000;
     position: fixed;
-    left: 200px;
-    width: 200px;
-    height: 500px;
-    margin-left: -200px;
+    left: 12%;
+    width: 13%;
+    height: 80%;
+    margin-left: -12%;
     overflow-y: auto;
-    background: #fff;
+    background: #F2F2F2;
 }
 .sidebar-nav {
     position: fixed;
     top: 1;
-    width: 200px;
+    width: 12%;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -240,7 +240,7 @@ hr {
     text-decoration: none;
 }
 .sidebar-nav>.sidebar-sitepage {
-    height: 65px;
+    height: 4%;
     font-size: 18px;
     line-height: 60px;
 }
@@ -286,6 +286,7 @@ hr {
     left: 0;
     right: 0;
     text-align: center;
+    height: 14%;
 }
 #footer .icons {
     margin: 0 0 4em 0;
