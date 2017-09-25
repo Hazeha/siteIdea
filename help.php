@@ -51,7 +51,13 @@
 	<div class="page-wrapper">
 
 		<div class="tab-content">
-        	<div class="tab-pane fade in active" id="overview">
+        	<div class="tab-pane fade in active" id="selling_mods">
+			<center>
+											<h2>
+												Selling Addons
+											</h2>
+										</center>
+										<hr>
 			</div>
 		</div>
 	</div>
