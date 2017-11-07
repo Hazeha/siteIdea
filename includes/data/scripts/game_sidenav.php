@@ -13,6 +13,10 @@
                 </li>
                 '
             ;
+            
         }
+        echo '<li><center> 
+        <a href="game_apply.php"> Apply Game </a></center>
+    </li>';
     }
 ?>

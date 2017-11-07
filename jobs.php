@@ -20,8 +20,9 @@
             <!--Side Nav Start-->
             <ul class="sidebar-nav">
                 <li class="sidebar-sitepage">
-                    <h2><strong>Jobs</strong></h2>
+                    <h2><strong><?php echo $total_jobs; ?> Jobs</strong></h2>
                 </li>
+                
                 
                     <div class="form-group">
                         <label>Games</label>
@@ -82,6 +83,11 @@
                             </option>
                         </select>
                     </div>
+                    <center>
+                    <button type="submit" class="btn" name="btn-signup">
+                	<i class="glyphicon glyphicon-open-file"></i>&nbsp; Post Job
+                </button>
+                </center>
                 
                 <li class="divider"></li>
             </ul>
@@ -90,8 +96,11 @@
             <!--Page Header Start-->
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="pull-right"><?php echo $total_jobs; ?> Jobs</h2>
+                
+                    
+                    
                     <h1 class="page-header"><strong>New Jobs</strong></h1>
+                    
                 </div>
             </div>
         </div><!--Page Header Slut-->
