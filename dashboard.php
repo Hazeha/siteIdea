@@ -1,5 +1,21 @@
-<?php include 'includes/data/users/data_get.php'; ?>
-<?php include 'includes/data/users/user_script_count.php';?>
+<?php
+	include 'includes/data/users/user_script_count.php';
+
+	require_once("session.php");
+	
+	require_once("class/userClass.php");
+	$auth_user = new USER();
+	
+	
+	$user_id = $_SESSION['user_session'];
+	
+	$stmt = $auth_user->runQuery("SELECT * FROM users WHERE user_id=:user_id");
+	$stmt->execute(array(":user_id"=>$user_id));
+	
+	$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
+	
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -7,7 +23,7 @@
 		<meta content="IE=edge" http-equiv="X-UA-Compatible">
 		<meta content="width=device-width, initial-scale=1" name="viewport">
 		<title>
-			Modbay - Profile
+			Modbay - <?php print($userRow['user_name']); ?>
 		</title>
 		<link href="css/bootstrap.min.css" rel="stylesheet"><!-- Custom CSS -->
 		<link href="css/mb-market.css" rel="stylesheet"><!-- Custom Fonts -->
@@ -24,7 +40,7 @@
 				<ul class="sidebar-nav">
 					<li class="sidebar-sitepage">
 						<h2>
-							<strong>Profile</strong>
+							<strong><?php print($userRow['user_name']); ?></strong>
 						</h2>
 					</li>
 					<li>
@@ -41,9 +57,6 @@
 					</li>
 					<li>
 						<a data-toggle="tab" href="#settings">Settings</a>
-					</li>
-					<li>
-						<a href="#">Logout</a>
 					</li>
 					<li class="divider"></li>
 				</ul>
@@ -64,7 +77,7 @@
 									<div class="tab-pane fade in active" id="dashboard">
 										<center>
 											<h2>
-												<?php echo $user_username; ?> - Legend Content Creator
+											<?php print($userRow['user_name']); ?> - Legend Content Creator <!-- This is for reputation purpose -->
 											</h2>
 										</center>
 										<hr>
@@ -75,18 +88,19 @@
 													<div class="col-sm-3">
 														<div class="panel panel-default">
                                                         
-														<?php echo '	<img class="img-thumbnail" src="data:image/jpeg;base64, '. base64_encode($user_logo) . '"> <button class="btn btn-default">Change Picture</button>';?>
+														<img class="img-thumbnail" src="data:image/jpeg;base64,<?php print(base64_encode($user_logo)); ?> ">
+														<button class="btn btn-default">Change Picture</button>
 														</div>
 														<ul>
-															<li>Nickname : <?php echo $user_name; ?>
+															<li>Nickname : <?php print($userRow['username']); ?>
 															</li>
-															<li>Join Date : <?php echo $user_join_date; ?>
+															<li>Join Date : <?php print($userRow['joining_date']); ?>
 															</li>
-															<li>Reputation : rep
+															<li>Reputation : not finished
 															</li>
-															<li>Scripts : <?php echo $user_totalscripts;?>
+															<li>Scripts : not finished
 															</li>
-															<li>Rating : 10/10
+															<li>Rating : not finished
 															</li>
 														</ul>
 													</div>
@@ -97,9 +111,8 @@
 															</div>
 															<div class="panel-body">
                                                             <p>
-																				<?php echo $user_biography; ?>
-																			</p>
-																
+															<?php print($userRow['user_biography']); ?>
+															</p>
                                                             </div>
                                                             
 														</div>
@@ -125,38 +138,7 @@
 													</div>
 												</div><!-- /.panel-body -->
 											</div>
-											<div class="chat-panel panel panel-default">
-												<div class="panel-heading">
-													<i class="fa fa-comments fa-fw"></i> Support
-													<div class="btn-group pull-right">
-														<button class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" type="button"><i class="fa fa-chevron-down"></i></button>
-														<ul class="dropdown-menu slidedown">
-															<li>
-																<a href="#"><i class="fa fa-refresh fa-fw"></i> Answer Tickets</a>
-															</li>
-														</ul>
-													</div>
-												</div><!-- /.panel-heading -->
-												<div class="panel-body">
-													<ul class="chat">
-														<li class="left clearfix">
-															<div class="chat-body clearfix">
-																<div class="header">
-																	<strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted"><i class="fa fa-clock-o fa-fw"></i> 12 mins ago</small>
-																</div>
-																<p>
-																	Harro!
-																</p>
-															</div>
-														</li>
-													</ul>
-												</div><!-- /.panel-body -->
-												<div class="panel-footer">
-													<div class="input-group">
-														<input class="form-control input-sm" id="btn-input" placeholder="Type your message here..." type="text"> <span class="input-group-btn"><button class="btn btn-warning btn-sm" id="btn-chat"><span class="input-group-btn"><span class="input-group-btn"><span class="input-group-btn"><span class="input-group-btn">Send</span></span></span></span></button></span>
-													</div>
-												</div><!-- /.panel-footer -->
-											</div>
+											
 										</div>
                                     </div>
                                     

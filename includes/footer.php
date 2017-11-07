@@ -4,7 +4,7 @@ include 'includes/server/connect.php';
 
     $script_count = mysqli_query($conn, "SELECT id FROM script_tb");
     $job_count = mysqli_query($conn, "SELECT id FROM job_tb");
-    $user_count = mysqli_query($conn, "SELECT id FROM client_tb");
+    $user_count = mysqli_query($conn, "SELECT user_id FROM users");
     $game_count = mysqli_query($conn, "SELECT id FROM game_tb");
     
     if ($script_count->num_rows > 0) {
