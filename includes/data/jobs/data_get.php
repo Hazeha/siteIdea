@@ -7,7 +7,7 @@
 
 	$job_selected = mysqli_query($conn, "SELECT name, description, game, upload_date, salary_max, salary_min, client_id FROM job_tb WHERE id='1' ");
 
-    $job_author = mysqli_query($conn, "SELECT user_id, username, user_logo FROM users WHERE user_id='1'");
+    $job_author = mysqli_query($conn, "SELECT user_id, user_name, user_logo FROM users WHERE user_id='1'");
 
 
     $job_seen = 10;

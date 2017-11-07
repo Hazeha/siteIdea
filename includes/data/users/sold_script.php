@@ -2,7 +2,7 @@
 
 include 'includes/server/connect.php';
 	
-	$scripts_view = mysqli_query($conn, "SELECT id, name, description, game_id, price, logo_link, script_link, upload_date, update_date FROM script_tb WHERE id='1'");
+	$scripts_view = mysqli_query($conn, "SELECT id, name, description, game_id, price, logo_link, script_link, upload_date, update_date FROM script_tb WHERE id=$user_id");
 			if($scripts_view->num_rows > 0) {
 				while($script_post = $scripts_view->fetch_assoc())
 				{
@@ -35,6 +35,13 @@ include 'includes/server/connect.php';
 											</div>
 				  ';
 				} 
+			}
+			else
+			{
+				echo '
+				
+				';
+
 			}
 
 ?>

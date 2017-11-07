@@ -1,3 +1,4 @@
+<?php require_once 'session.php'; ?>
 <?php include 'includes/data/jobs/data_get.php'; ?>
 <!DOCTYPE html>
 <html>
