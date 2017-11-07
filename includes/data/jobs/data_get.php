@@ -7,7 +7,7 @@
 
 	$job_selected = mysqli_query($conn, "SELECT name, description, game, upload_date, salary_max, salary_min, client_id FROM job_tb WHERE id='1' ");
 
-    $job_author = mysqli_query($conn, "SELECT id, username, logo FROM client_tb WHERE id='1'");
+    $job_author = mysqli_query($conn, "SELECT user_id, username, user_logo FROM users WHERE user_id='1'");
 
 
     $job_seen = 10;
@@ -29,8 +29,8 @@
     }
 
     while ($post_author = $job_author->fetch_assoc()) {
-        $author_name = $post_author["username"];
-        $author_logo = base64_encode($post_author['logo']);
-        $author_id = $post_author["id"];
+        $author_name = $post_author["user_name"];
+        $author_logo = base64_encode($post_author['user_logo']);
+        $author_id = $post_author["user_id"];
 
     }

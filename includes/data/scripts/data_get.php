@@ -4,7 +4,7 @@
     include 'includes/server/connect.php';
     $script_selected = mysqli_query($conn, "SELECT name, description, features, game_id, price, sales, logo_link, script_link, review_count, review_rating, upload_date, update_date FROM script_tb WHERE id='1' ");
 
-    $script_author = mysqli_query($conn, "SELECT id, user_name, logo FROM users WHERE user_id='1'");
+    $script_author = mysqli_query($conn, "SELECT user_id, username, user_logo FROM users WHERE user_id='1' ");
 
     # mysqli_query($conn, "UPDATE script_tb SET review_rating=2 WHERE id='1' ");
 
@@ -25,8 +25,8 @@
 
     while ($post_author = $script_author->fetch_assoc()) {
         $author_name = $post_author["username"];
-        $author_logo = base64_encode($post_author['logo']);
-        $author_id = $post_author["id"];
+        $author_logo = base64_encode($post_author['user_logo']);
+        $author_id = $post_author["user_id"];
     }
 
     

@@ -1,5 +1,5 @@
     <?php
-    	require_once("session.php");        
+    session_start();       
     require_once("class/userClass.php");
     $login = new USER();
     $failure ="";
