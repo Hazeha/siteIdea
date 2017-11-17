@@ -1,7 +1,8 @@
 <?php
-	include 'includes/data/users/user_script_count.php';
 
 	require_once("session.php");
+
+
 	
 	require_once("class/userClass.php");
 	$auth_user = new USER();
@@ -13,6 +14,30 @@
 	$stmt->execute(array(":user_id"=>$user_id));
 	
 	$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
+
+
+	// Script tæller - - Dette skal laves om til PDO.
+	include 'includes/server/connect.php';  
+    $user_scripts = mysqli_query($conn, "SELECT id FROM script_tb WHERE user_id=$user_id");
+	
+	if ($user_scripts->num_rows > 0) {
+		$user_totalscripts = $user_scripts->num_rows;
+	}
+	else{
+		$user_totalscripts = 0;
+	}
+	// Box i siden på main dashboard
+	$userMsg = 10;
+	$userBoughtScripts = 5;
+	$userSoldScripts = 4;
+	$userIncome = 100;
+
+	// Box under billede
+	$userReputation = 10;
+	$userScripts = 2;
+	$userRating = 4;
+
+	
 	
 ?>
 
@@ -26,7 +51,7 @@
 			Modbay - <?php print($userRow['user_name']); ?>
 		</title>
 		<link href="css/bootstrap.min.css" rel="stylesheet"><!-- Custom CSS -->
-		<link href="css/mb-market.css" rel="stylesheet"><!-- Custom Fonts -->
+		<link href="css/css_new.css" rel="stylesheet"><!-- Custom Fonts -->
 		<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
@@ -39,10 +64,11 @@
 				<!--Side Nav Start-->
 				<ul class="sidebar-nav">
 					<li class="sidebar-sitepage">
-						<h2>
+						
 							<strong><?php print($userRow['user_name']); ?></strong>
-						</h2>
+						
 					</li>
+					<hr>
 					<li>
 						<a data-toggle="tab" href="#dashboard">Dashboard</a>
 					</li>
@@ -96,11 +122,11 @@
 															</li>
 															<li>Join Date : <?php print($userRow['joining_date']); ?>
 															</li>
-															<li>Reputation : not finished
+															<li>Reputation : <?php print($userReputation); ?>
 															</li>
-															<li>Scripts : not finished
+															<li>Scripts : <?php print($userScripts); ?>
 															</li>
-															<li>Rating : not finished
+															<li>Rating : <?php print($userRating); ?>
 															</li>
 														</ul>
 													</div>
@@ -127,13 +153,14 @@
 												</div><!-- /.panel-heading -->
 												<div class="panel-body">
 													<div class="list-group">
-														<a class="list-group-item" href="#"><i class="fa fa-comment fa-fw"></i> Scripts for sale <span class="pull-right text-muted small"><em>4</em></span>
+													<a class="list-group-item" href="#"><i class="fa fa-comment fa-fw"></i> Messages <span class="pull-right text-muted small"><em><?php print($userMsg);?></em></span></a> 
+														<a class="list-group-item" href="#"><i class="fa fa-money fa-fw"></i> Scripts for sale <span class="pull-right text-muted small"><em><?php print($user_totalscripts);?></em></span>
 														</a> 
-														<a class="list-group-item" href="#"><i class="fa fa-twitter fa-fw"></i> Updated scripts <span class="pull-right text-muted small"><em>9001</em></span></a> 
-														<a class="list-group-item" href="#"><i class="fa fa-shopping-cart fa-fw"></i> Brought Scripts <span class="pull-right text-muted small"><em>9</em></span>
+														
+														<a class="list-group-item" href="#"><i class="fa fa-shopping-cart fa-fw"></i> Brought Scripts <span class="pull-right text-muted small"><em><?php print($userBoughtScripts);?></em></span>
 														</a> 
-														<a class="list-group-item" href="#"><i class="fa fa-shopping-cart fa-fw"></i> Sold Scripts <span class="pull-right text-muted small"><em>9</em></span></a> 
-														<a class="list-group-item" href="#"><i class="fa fa-money fa-fw"></i> Payments <span class="pull-right text-muted small"><em>1337</em></span>
+														<a class="list-group-item" href="#"><i class="fa fa-shopping-cart fa-fw"></i> Sold Scripts <span class="pull-right text-muted small"><em><?php print($userSoldScripts);?></em></span></a> 
+														<a class="list-group-item" href="#"><i class="fa fa-money fa-fw"></i> Payments <span class="pull-right text-muted small"><em><?php print($userIncome);?>  <i class="fa fa-usd fa-fw"></i> </em></span>
 														</a>
 													</div>
 												</div><!-- /.panel-body -->
@@ -208,9 +235,9 @@
 				</div>
             </div>
 
-            <footer id="footer">
+            
 			<?php include 'includes/footer.php';?>
-            </footer> <!-- footer slut -->
+            
             
         </div>
         <!-- jQuery -->

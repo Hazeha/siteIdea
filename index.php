@@ -1,4 +1,4 @@
-<?php require_once 'session.php'; ?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +7,7 @@
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <title>Modbay - Marketplace</title>
     <link href="css/bootstrap.min.css" rel="stylesheet"><!-- Custom CSS -->
-    <link href="css/mb-market.css" rel="stylesheet"><!-- Custom Fonts -->
+    <link href="css/css_new.css" rel="stylesheet"><!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -35,10 +35,10 @@
             <?php include 'includes/data/scripts/market_script.php';?>        
         </div>
         
-        <?php include 'includes/footer.php';?>  
+        
         
     </div><!-- /#wrapper -->
-
+    <?php include 'includes/footer.php';?>  
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 

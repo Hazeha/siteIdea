@@ -43,8 +43,14 @@
         <div class="dropdown-menu" style="margin-left: 2em">
             <div class="panel-body">
               <h3 class="form-signin-heading">Logged In.</h3>
+              <ul>
+              <li>
               <a href="dashboard.php">Dashboard</a>
+              </li>
+              <li>
               <a href="logout.php?logout=true"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout Out</a>
+              </li>
+              </ul>
             </div>
         </div>
     </li>';
@@ -109,24 +115,24 @@
                     <a class="dropdown-toggle" data-toggle="dropdown">Help<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="faq.php">Selling Mods</a>
+                            <a href="help.php">Selling Mods</a>
                         </li>
                         <li>
-                            <a href="#">Buying Mods</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">FAQ</a>
-                        </li>
-                        <li>
-                            <a href="#">Contact us</a>
+                            <a href="help.php">Buying Mods</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#">Privacy Policy</a>
+                            <a href="help.php">FAQ</a>
                         </li>
                         <li>
-                            <a href="#">Tearms and Conditions</a>
+                            <a href="help.php">Contact us</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="help.php">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="help.php">Tearms and Conditions</a>
                         </li>
                     </ul>
                 </li>

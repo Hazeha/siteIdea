@@ -1,4 +1,4 @@
-<?php require_once 'session.php'; ?>
+<?php session_start(); ?>
 <?php include 'includes/data/jobs/data_get.php'; ?>
 <!DOCTYPE html>
 <html>
@@ -8,7 +8,7 @@
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <title>Modbay - Jobs</title>
     <link href="css/bootstrap.min.css" rel="stylesheet"><!-- Custom CSS -->
-    <link href="css/mb-market.css" rel="stylesheet"><!-- Custom Fonts -->
+    <link href="css/css_new.css" rel="stylesheet"><!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>

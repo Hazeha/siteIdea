@@ -46,7 +46,7 @@ if(isset($_POST['btn-signup']))
 			else
 			{
 				if($user->register($uname,$umail,$upass)){	
-					$user->redirect('sign-up.php?joined');
+					$user->redirect('register.php?joined');
 				}
 			}
 		}
@@ -63,12 +63,14 @@ if(isset($_POST['btn-signup']))
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Modbay : Sign up</title>
-<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link href="css/mb-market.css" rel="stylesheet" media="screen">
-<link rel="stylesheet" href="css/loginStyle.css" type="text/css"  />
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/css_new.css" rel="stylesheet">
+
+<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-
+<div class="wrapper">
+<?php include 'includes/header.php';?>
 <div class="signin-form">
 
 <div class="container">
@@ -118,6 +120,13 @@ if(isset($_POST['btn-signup']))
 </div>
 
 </div>
+<?php include 'includes/footer.php';?>
+		</div>
 
 </body>
+<script src="js/jquery.js">
+		</script> <!-- Bootstrap Core JavaScript -->
+						 
+		<script src="js/bootstrap.min.js">
+		</script>
 </html>

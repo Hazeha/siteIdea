@@ -2,14 +2,14 @@
 /* CSS Document */
 
 body{
-	background:#f1f9f9;
+	background: #fff;
 }
 
 .form-signin {
     max-width: 500px;
     padding: 19px 29px 29px;
     margin: 0 auto;
-	//margin-top:90px;
+	margin-top:90px;
     background-color: #fff;
 	
     border: 1px solid #e5e5e5;
@@ -26,7 +26,8 @@ body{
 }
 
 .form-signin .form-signin-heading{
-    color:#00A2D1;
+    
+    color: #999;
 }
 .form-signin input[type="text"],
 .form-signin input[type="password"],
@@ -38,13 +39,11 @@ body{
 
 .signin-form, .body-container
 {
-	//border:solid red 1px;
-	margin-top:110px;
+    margin-top:1%;
 }
-.navbar-brand{
-	font-family:"Lucida Handwriting";
-}
+
 #btn-submit{
+    background-color: #999;
 	height:45px;
 }
 .h5{

@@ -1,4 +1,4 @@
-<?php require_once 'session.php'; ?>
+<?php session_start(); ?>
 <?php include 'includes/data/scripts/data_get.php';?>
 <?php include 'includes/data/scripts/review_rounder.php'; ?>
 <!DOCTYPE html>

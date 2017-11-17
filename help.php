@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,56 +17,93 @@
 <body>	
 <?php include 'includes/header.php';?>
 <div class="wrapper">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid pull-right">
+    <div class="navbar-header pull-right">
+      <a class="navbar-brand">Help Section</a>
+    </div>
+    <ul class="nav navbar-nav">
+	<li>
+	<a data-toggle="tab" href="#selling">Selling Mods</a>
+	</li>
+	<li>
+	<a data-toggle="tab" href="#buying">Buying Mods</a>
+	</li>
+	<li>
+	<a data-toggle="tab" href="#faq">FAQ</a>
+	</li>
+	<li>
+	<a data-toggle="tab" href="#contact">Contact us</a>
+	</li>
+	<li>
+	<a data-toggle="tab" href="#privacy">Privacy Policy</a>
+	</li>
+	<li>
+	<a data-toggle="tab" href="#terms">Terms and Conditions</a>
+	</li>
+    </ul>
+  </div>
+</nav>
 
-<div id="sidebar-wrapper">
-	<ul class="sidebar-nav">
-		<li class="sidebar-sitepage">
-		<h2>
-			<strong>Menu</strong>
-		</h2>
-		</li>
-		<li>
-			<a data-toggle="tab" href="#selling_mods">Selling Mods</a>
-		</li>
-		<li>
-			<a data-toggle="tab" href="#buying_mods">Buying Mods</a>
-        </li>
-		<hr>
-        <li>
-			<a data-toggle="tab" href="#faq">FAQ</a>
-		</li>
-		<li>
-			<a data-toggle="tab" href="#contact">Contact us</a>
-		</li>
-		<hr>
-		<li>
-			<a data-toggle="tab" href="#privacy">Privacy Policy</a>
-		</li>
-		<li>
-			<a data-toggle="tab" href="#TAC">Terms and Conditions</a>
-		</li>
-		<li class="divider"></li>
-	</ul>
-</div>
-
-	<div class="page-wrapper">
-
+<div class="page-wrapper">
 		<div class="tab-content">
-        	<div class="tab-pane fade in active" id="selling_mods">
-			<center>
-											<h2>
-												Selling Addons
-											</h2>
-										</center>
 
-										<div class="panel panel-default">
-												<div class="panel-body">
-												</div>
-											</div>
-										<hr>
-			</div>
-		</div>
-	</div>
+        	<div class="tab-pane fade in active" id="selling">
+				<center><h2>Selling Addons</h2></center>
+					<div class="panel panel-default">
+					<div class="panel-body">
+					</div>
+				</div>
+				<hr>
+			</div>	<!-- Tab SLut -->
+
+        	<div class="tab-pane fade in" id="buying">
+				<center><h2>Buying Addons</h2></center>
+					<div class="panel panel-default">
+					<div class="panel-body">
+					</div>
+				</div>
+				<hr>
+			</div>	<!-- Tab SLut -->
+
+        	<div class="tab-pane fade in" id="faq">
+				<center><h2>FAQ</h2></center>
+					<div class="panel panel-default">
+					<div class="panel-body">
+					</div>
+				</div>
+				<hr>
+			</div>	<!-- Tab SLut -->
+
+        	<div class="tab-pane fade in" id="contact">
+				<center><h2>Contact</h2></center>
+					<div class="panel panel-default">
+					<div class="panel-body">
+					</div>
+				</div>
+				<hr>
+			</div>	<!-- Tab SLut -->
+
+        	<div class="tab-pane fade in" id="privacy">
+				<center><h2>Privacy Policy</h2></center>
+					<div class="panel panel-default">
+					<div class="panel-body">
+					</div>
+				</div>
+				<hr>
+			</div>	<!-- Tab SLut -->
+
+        	<div class="tab-pane fade in" id="terms">
+				<center><h2>Terms and Conditions</h2></center>
+					<div class="panel panel-default">
+					<div class="panel-body">
+					</div>
+				</div>
+				<hr>
+			</div>	<!-- Tab SLut -->
+
+		</div>	<!-- Tab content Slut -->
+</div>	<!-- Page wrapper slut -->
 	
 </div>
 <footer id="footer">

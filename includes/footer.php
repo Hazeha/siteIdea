@@ -20,7 +20,7 @@ include 'includes/server/connect.php';
         $total_game = $game_count->num_rows;
     }
 echo '
-<footer id="footer">
+<div class="panel-footer" id="footer">
     <ul class="menu">
         <li>
             <h3>' . $total_user . ' Registered Users</h3>
@@ -50,5 +50,5 @@ echo '
             <a href="#">Contact</a>
         </li>
     </ul><span class="copyright">&copy; Copyright. All rights reserved. Modbay 2017</span>
-</footer>
+</div>
 ';?>
