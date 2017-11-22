@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php session_start(); 
+// OHH YEAH! THE PDO BEAR IS HERE!
+
+?>
 <!DOCTYPE html>
 <html>
 <head>

@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
 
 
@@ -51,7 +51,7 @@ input[type=submit]:hover {
     background-color: #fff;
 }
 .huge {
-    font-size: 50px;
+    font-size: 2em;
     line-height: normal;
 }
 

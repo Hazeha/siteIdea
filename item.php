@@ -1,6 +1,12 @@
-<?php session_start(); ?>
-<?php include 'includes/data/scripts/data_get.php';?>
-<?php include 'includes/data/scripts/review_rounder.php'; ?>
+<?php session_start();
+// Der skal laves meget om. alt skal laves til PDO. LAVES I scriptClass
+include 'includes/data/scripts/data_get.php';
+include 'includes/data/scripts/review_rounder.php'; 
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +17,7 @@
     <meta content="" name="author">
     <title>Modbay - <?php echo $script_name; ?></title><!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet"><!-- Custom CSS -->
-    <link href="css/sb-admin.css" rel="stylesheet"><!-- Custom Fonts -->
+    <link href="css/css_new.css" rel="stylesheet"><!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>

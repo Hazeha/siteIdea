@@ -11,9 +11,14 @@
 	$user_id = $_SESSION['user_session'];
 	
 	$stmt = $auth_user->runQuery("SELECT * FROM users WHERE user_id=:user_id");
-	$stmt->execute(array(":user_id"=>$user_id));
-	
+	$stmt->execute(array(":user_id"=>$user_id));	
 	$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
+
+	// User Script Counter
+	$userScriptCount = $auth_user->runQuery('SELECT count(*) FROM script_tb WHERE user_id=:user_id')->fetchColumn(); 
+	
+
+
 
 
 	// Script tæller - - Dette skal laves om til PDO.
@@ -34,7 +39,7 @@
 
 	// Box under billede
 	$userReputation = 10;
-	$userScripts = 2;
+	$userScripts = $userScriptCount;
 	$userRating = 4;
 
 	
@@ -154,7 +159,7 @@
 												<div class="panel-body">
 													<div class="list-group">
 													<a class="list-group-item" href="#"><i class="fa fa-comment fa-fw"></i> Messages <span class="pull-right text-muted small"><em><?php print($userMsg);?></em></span></a> 
-														<a class="list-group-item" href="#"><i class="fa fa-money fa-fw"></i> Scripts for sale <span class="pull-right text-muted small"><em><?php print($user_totalscripts);?></em></span>
+														<a class="list-group-item" href="#"><i class="fa fa-money fa-fw"></i> Scripts for sale <span class="pull-right text-muted small"><em><?php print($userScripts);?></em></span>
 														</a> 
 														
 														<a class="list-group-item" href="#"><i class="fa fa-shopping-cart fa-fw"></i> Brought Scripts <span class="pull-right text-muted small"><em><?php print($userBoughtScripts);?></em></span>

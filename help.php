@@ -18,10 +18,11 @@
 <?php include 'includes/header.php';?>
 <div class="wrapper">
 <nav class="navbar navbar-inverse">
-  <div class="container-fluid pull-right">
-    <div class="navbar-header pull-right">
+<div class="navbar-header">
       <a class="navbar-brand">Help Section</a>
     </div>
+  <div class="container-fluid pull-right">
+    
     <ul class="nav navbar-nav">
 	<li>
 	<a data-toggle="tab" href="#selling">Selling Mods</a>

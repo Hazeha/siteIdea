@@ -1,4 +1,6 @@
 <?php
+
+	// Skal lavet om til PDO istedet for alm. mySQL
 	include 'includes/server/connect.php';
 	include 'includes/data/scripts/data_get.php';
 	include 'includes/data/scripts/review_rounder.php';
@@ -10,10 +12,10 @@
 			echo '
 				<div class="col-md-3 portfolio-item col-md-4">
                 	    <div class="thumbnail">
-                    	<img href="' . $post["script_link"] . '" src="data:image/jpeg;base64,' . base64_encode( $post['logo_link']) . '">
+                    	<img href="item.php?scriptId=' .$post["id"]. '" src="data:image/jpeg;base64,' . base64_encode( $post['logo_link']) . '">
                         <div class="caption">
                            	<h4 class="pull-right">' . $post["price"] . '$</h4>
-                           	<h4><a href="' . $post["script_link"] . '">' . $post["name"] . '</a></h4>
+                           	<h4><a href="item.php?scriptId=' .$post["id"]. '">' . $post["name"] . '</a></h4>
                            	<p>' . $post["description"] . '</p>
                         </div>
                         <div class="ratings">

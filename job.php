@@ -1,11 +1,11 @@
 <?php session_start();
 include 'includes/server/connect.php';
-
+											//Skal laves til PDO
 $job_seen = 10;
-$job_comments = 4;  /* Variable til show af tabs i siden */
+$job_comments = 4;							/* Variable til show af tabs i siden  og som skal laves */
 $job_apply = 8;
 
-//Fetch funktion til job post, udfra det ID som blir vidergivet fra jobs index side.
+											//Fetch funktion til job post, udfra det ID som blir vidergivet fra jobs index side.
 if(isset($_GET['jobId']))
 {
     $jobId = $_GET['jobId'];
