@@ -1,5 +1,12 @@
 <?php
-
+// Funktioner i denne class
+// register		-  Done
+// runQuery		-  Done
+// doLogin		-  Done
+// is_loggedin	-  Done
+// doLogout		-  Done
+// redirect		-  Done
+// 
 require_once('includes/server/loginConfig.php');
 
 class USER

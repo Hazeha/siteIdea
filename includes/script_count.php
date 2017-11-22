@@ -1,4 +1,5 @@
 <?php 
+// Skal implementeres et andet sted.
 	include 'includes/server/connect.php';
 
 

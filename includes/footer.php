@@ -1,4 +1,5 @@
 <?php 
+// Footer er stort set done. -- Mangler at lave sql connections om til PDO
 include 'includes/server/connect.php';
 
 
