@@ -1,5 +1,32 @@
-<?php session_start(); ?>
-<?php include 'includes/data/jobs/data_get.php'; ?>
+<?php session_start();
+include 'includes/server/connect.php';
+
+$job_seen = 10;
+$job_comments = 4;  /* Variable til show af tabs i siden */
+$job_apply = 8;
+
+//Fetch funktion til job post, udfra det ID som blir vidergivet fra jobs index side.
+if(isset($_GET['jobId']))
+{
+    $jobId = $_GET['jobId'];
+    $job_selected = mysqli_query($conn, "SELECT jobName, jobDescription, jobSalary_max, jobSalary_min, jobClientId, jobUploadDate, jobGame FROM job_tb WHERE jobId=$jobId");
+    
+
+    while ($post = $job_selected->fetch_assoc()) {
+        $job_name = $post["jobName"];
+        $job_description = $post["jobDescription"];
+        $job_salary_max = $post["jobSalary_max"];
+        $job_salary_min = $post["jobSalary_min"];
+        $job_upload = $post["jobUploadDate"];
+        
+        $job_game = $post["jobGame"];
+        $jobAuthor = $post["jobClientId"];
+    
+    }
+}
+
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +38,7 @@
     <meta content="" name="author">
     <title>Modbay - <?php echo $job_name; ?></title><!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet"><!-- Custom CSS -->
-    <link href="css/sb-admin.css" rel="stylesheet"><!-- Custom Fonts -->
+    <link href="css/css_new.css" rel="stylesheet"><!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>
