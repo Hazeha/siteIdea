@@ -28,7 +28,6 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <?php include 'includes/script_count.php';?>
                     <h1 class="page-header"><strong>Marketplace</strong></h1>                    
                 </div>
             </div>

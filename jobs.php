@@ -1,5 +1,11 @@
-<?php session_start(); ?>
-<?php include 'includes/data/jobs/data_get.php'; ?>
+<?php 
+// Der skal laves en form app, der kan vælge søge kreterier for forskellige jobs.
+// Der skal laves en form app til at apply for jobs. Jeg har allerede lavet funktonen (jobApply)
+// Skal ha ryddet op i koden.
+	session_start(); 
+	include("class/jobClass.php");
+	$jobs = new JOB();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +22,8 @@
        <!-- Header start-->
         <?php include 'includes/header.php';?>
         <!--Header Slut-->
+
+	<!-- Sidenav skal laves om til en form. -->
         <div id="sidebar-wrapper">
             <!--Side Nav Start-->
             <ul class="sidebar-nav">
@@ -109,7 +117,7 @@
             <div class="row"></div><!-- Games Here-->
             <div class="row">
                 <!--Mod Sale Start-->
-                <?php include 'includes/data/jobs/post.php'; ?>
+                <?php $jobs->jobPost();?>
             </div>
         </div><!--Page Slut-->
         <footer id="footer">

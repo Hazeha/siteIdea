@@ -1,22 +1,25 @@
 <?php session_start();
 include 'includes/server/connect.php';
+
+require_once('class/userClass.php');
+$auth_user = new USER();
+
+$stmt = $auth_user->runQuery("");
 											//Skal laves til PDO
 $job_seen = 10;
 $job_comments = 4;							/* Variable til show af tabs i siden  og som skal laves */
 $job_apply = 8;
-
 											//Fetch funktion til job post, udfra det ID som blir vidergivet fra jobs index side.
 if(isset($_GET['jobId']))
 {
     $jobId = $_GET['jobId'];
-    $job_selected = mysqli_query($conn, "SELECT jobName, jobDescription, jobSalary_max, jobSalary_min, jobClientId, jobUploadDate, jobGame FROM job_tb WHERE jobId=$jobId");
+    $job_selected = mysqli_query($conn, "SELECT jobName, jobDescription, jobMaxBudget, jobClientId, jobUploadDate, jobGame FROM job_tb WHERE jobId=$jobId");
     
 
     while ($post = $job_selected->fetch_assoc()) {
         $job_name = $post["jobName"];
         $job_description = $post["jobDescription"];
-        $job_salary_max = $post["jobSalary_max"];
-        $job_salary_min = $post["jobSalary_min"];
+        $job_salary_max = $post["jobMaxBudget"];
         $job_upload = $post["jobUploadDate"];
         
         $job_game = $post["jobGame"];
@@ -151,29 +154,21 @@ if(isset($_GET['jobId']))
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div class="huge">
-                                            <?php echo $job_salary_min . '$ - ' . $job_salary_max . '$'; ?>
+                                            <?php echo $job_salary_max . '$'; ?>
                                         </div>
                                         <div>
-                                            Applications
+                                            Max Budget
                                         </div>
                                     </div>
+									
                                 </div>
+
                             </div>
                         </div><!-- /.row -->
                         <div class="panel panel-grey">
                             <div class="panel-heading">
                                 <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-edit fa-3x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <div class="huge">
-                                            <?php echo $job_apply; ?>
-                                        </div>
-                                        <div>
-                                            Applications
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div><!-- /.row -->

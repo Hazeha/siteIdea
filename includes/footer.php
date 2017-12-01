@@ -39,16 +39,16 @@ echo '
     <hr>
     <ul class="menu">
         <li>
-            <a href="#">FAQ</a>
+            <a href="help.php">FAQ</a>
         </li>
         <li>
-            <a href="#">Terms of Use</a>
+            <a href="help.php">Terms of Use</a>
         </li>
         <li>
-            <a href="#">Privacy</a>
+            <a href="help.php">Privacy</a>
         </li>
         <li>
-            <a href="#">Contact</a>
+            <a href="help.php">Contact</a>
         </li>
     </ul><span class="copyright">&copy; Copyright. All rights reserved. Modbay 2017</span>
 </div>
