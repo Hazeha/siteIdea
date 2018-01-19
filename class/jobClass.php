@@ -1,16 +1,12 @@
 <?php
 // FUnktioner i denne class
 // jobApply - Apply job 
-// YAY Første skridt mod en PDO hjemmeside.
-
-require_once('includes/server/loginConfig.php');
 $total_jobs = 0;
+require_once('includes/server/loginConfig.php');
+
 class JOB
 {
 	private $conn;
-
-
-
 	public function __construct()
 	{
 		$database = new database();
@@ -23,18 +19,18 @@ class JOB
 		return $jobStmt;
 	}
 
-	//Denne funktion bliver ikke brugt endnu. Men det er til at apply et job. Altså lave jobopslag
-	public function jobApply($jname,$jdescription,$jmaxbudget,$jauthor,$jgame)
+	// det er til at apply et job. Altsï¿½ lave jobopslag.
+	// Mangler stadig at fÃ¥ userId og Categorier.
+	public function jobApply($jobName, $jobDescription, $jobBudget, $jobGame)
 	{
 		try
 		{
-			$jobStmt = $this->conn->prepare("INSERT INTO job_tb(jobName, jobDescription, jobMaxBudget, jobClientId, jobGame) VALUES(:jname, :jdescription, jmaxbudget, jauthor, jgame)");
+			$jobStmt = $this->conn->prepare("INSERT INTO job_tb (jobName,jobDescription,jobMaxBudget,jobGame) VALUES(:jname, :jdescription, :jmaxbudget, :jgame)");
 
-			$jobStmt->bindparam(":jname", $jname);
-			$jobStmt->bindparam(":jdescription", $jdescription);
-			$jobStmt->bindparam(":jmaxbudget", $jmaxbudget);
-			$jobStmt->bindparam(":jauthor", $jauthor);
-			$jobStmt->bindparam(":jgame", $jgame);
+			$jobStmt->bindparam(":jname", $jobName);
+			$jobStmt->bindparam(":jdescription", $jobDescription);
+			$jobStmt->bindparam(":jmaxbudget", $jobBudget);
+			$jobStmt->bindparam(":jgame", $jobGame);
 
 			$jobStmt->execute();
 
@@ -47,8 +43,8 @@ class JOB
 	
 	}
 
-	// Function til at poste jobs på den overordnede side. 
-	// Herfra kunne man lave søge kreterier. 
+	// Function til at poste jobs pï¿½ den overordnede side. 
+	// Herfra kunne man lave sï¿½ge kreterier. 
 	public function jobPost()
 	{
 		$getJobs = $this->conn->prepare("SELECT * FROM job_tb ORDER BY jobUploadDate ASC");
@@ -56,22 +52,59 @@ class JOB
 		$jobs = $getJobs->fetchAll();
 
 
-		foreach($jobs as $post)
+		foreach($jobs as $post)//Mangler jobCat
 		{
 			echo '
                 <div class="col-md-3 portfolio-item col-md-4">
                     <div class="thumbnail">
                         <div class="caption">
                             <h4 class="pull-right">' . $post["jobMaxBudget"] . '$</h4>
-                            <h4><a href="job.php?jobId=' .$post["jobId"]. '"> ' . $post["jobName"] . ' </a></h4>
+                            <h4><a href="job.php?jobId=' .$post["id"]. '"> ' . $post["jobName"] . ' </a></h4>
                             <p> ' . $post["jobDescription"] . ' </p>
                         </div>
-                        <div class="ratings">
+						<div class="ratings">
+						<p>'.$post["jobGame"].' - '.$post["jobCat"].'</p> 
                             <p>Uploaded : '.$post["jobUploadDate"].'</p>
-                            <p>Garrys mod - Scripting</p>
+                            
                         </div>
                     </div>
                 </div>
+			';
+
+		}
+	}
+	//Her skal der laves en funktion der gÃ¸r det muligt for content creators at ansÃ¸ge om jobbet.
+	//Der skal ogsÃ¥ laves en funktion der fortÃ¦ller om hvor mange der har ansÃ¸gt om jobbet.
+	public function applyJob()
+	{
+
+	}
+	//Her skal der laves en function til at post jobbet nÃ¥r man har valgt et.
+	public function jobGet($jobId)
+	{
+		$getJob = $this->conn->prepare("SELECT * FROM job_tb WHERE id=?");
+		$getJob->execute([$jobId]);
+		$jobInfo = $getJob->fetchAll();
+		return $jobInfo;		
+	}
+	//Til Post af comment til job
+	public function jobCommentPost()
+	{
+
+	}
+	//Skal bruges til at post comments til valgt job.
+	//
+	public function jobComment($jobId)
+	{
+		foreach ($comment as $post)
+		{
+		echo' 
+			<div class="media">
+				<a class="pull-left" href="#"><img alt="" class="media-object" src="http://placehold.it/64x64"></a>
+				<div class="media-body">
+					<h4 class="media-heading">Dr. Carsten <small>August 25, 2017 at 9:30 PM</small></h4>Good working meth system and really easy to use. Uses a more modern approach and realistic than the other competitors.
+				</div>
+			</div>
 			';
 		}
 	}

@@ -1,10 +1,37 @@
 <?php 
-// Der skal laves en form app, der kan vælge søge kreterier for forskellige jobs.
+// Der skal laves en form app, der kan vï¿½lge sï¿½ge kreterier for forskellige jobs.
 // Der skal laves en form app til at apply for jobs. Jeg har allerede lavet funktonen (jobApply)
 // Skal ha ryddet op i koden.
 	session_start(); 
-	include("class/jobClass.php");
-	$jobs = new JOB();
+    require_once("class/jobClass.php");
+	require_once("class/userClass.php");
+    $jobs = new JOB();
+    $auth_user = new USER();
+
+    if(isset($_POST['btn-postJob']))
+    {
+        $jobName		= strip_tags($_POST['txt_jobName']);
+        $jobDescription	= strip_tags($_POST['txt_jobDescription']);	
+        $jobBudget		= strip_tags($_POST['txt_jobBudget']);    
+        $jobGame        = strip_tags($_POST['txt_jobGame']);
+    
+        if($jobName=="")	{
+            $error[] = "provide name !";	
+        }
+        else{
+            try
+            {
+                if($jobs->jobApply($jobName,$jobDescription,$jobBudget,$jobGame))
+                {
+                    
+                }               
+            }
+            catch(PDOException $e)
+            {
+            echo $e->getMessage();
+            }
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,7 +55,7 @@
             <!--Side Nav Start-->
             <ul class="sidebar-nav">
                 <li class="sidebar-sitepage">
-                    <h2><strong><?php echo $total_jobs; ?> Jobs</strong></h2>
+                    <h2><strong>Fixe med pdo: Jobs</strong></h2>
                 </li>
                 
                 
@@ -91,11 +118,34 @@
                             </option>
                         </select>
                     </div>
-                    <center>
-                    <button type="submit" class="btn" name="btn-signup">
-                	<i class="glyphicon glyphicon-open-file"></i>&nbsp; Post Job
-                </button>
-                </center>
+            <center>
+                <div class="popup">
+                    
+                    <button type="submit" class="btn"  onclick="jobPostFunction()">Post Job
+                    </button>
+
+                    <span class="popuptext" id="myPopup">Post Job
+                    <form method="post" class="form">
+                    <div class="form-group-jobpost">
+                        Job Name
+                        <input type="text_job" class="form-control" name="txt_jobName" placeholder="Name your job">
+
+                        Game
+                        <input type="text_job" class="form-control" name="txt_jobGame" placeholder="What game are we talking about">
+
+                        Description
+                        <textarea type="text_job" class="form-control" name="txt_jobDescription" rows="2" placeholder="Max 250 chars"></textarea>
+
+                        <label for="txt_jobBudget">Budget</label>
+                        <input type="text_job" class="form-control" name="txt_jobBudget" placeholder="What is your maximum budget">
+
+                        <button type="submit" class="btn btn-primary" name="btn-postJob">Post Your Job!</button>
+                    </div>
+                    </form> 
+                    </span>
+
+                </div>
+            </center>
                 
                 <li class="divider"></li>
             </ul>
@@ -131,5 +181,13 @@
      
     <script src="js/bootstrap.min.js">
     </script>
+
+    <script>
+// When the user clicks on div, open the popup
+function jobPostFunction() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+}
+</script>
 </body>
 </html>

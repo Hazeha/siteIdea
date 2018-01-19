@@ -1,0 +1,59 @@
+Overordnet:
+    Script insert virker men skal finjusteres.
+    Job insert virker. Men skal implementeres og laves færdig med alle data.
+    Register virker. Men profile settings og flere data skal laves og kunne insættes.
+
+
+Alle funktioner fra includes skal ligges ind i job\Script\Useer classes.
+Indsættelse af script er lykkedes.
+
+        - Dashnboard skal laves om
+            Der skal implementeres graffer så man kan se ens indtjening på sine scripts / jobs. 
+
+
+
+Scripts
+        -Datoer skal laves om så tiden ikke visses men kun dato.
+        -Har lagt mærke til at scripts automatisk har 3 stjerner.(find ud af hvorfor) 
+            Den funktion skal ligges ind i ScriptClass og laves ordenligt. 
+            Det er muligt at det er fordi der er gået noget galt med id transistoren som linker scripts og comments/reviews sammen. 
+
+
+        -Seach Engine skal laves
+
+
+        Der skal laves rn måde vi kan gdkende scripts der kommer til selg. 
+
+        Script upload skal laves færdig. men det bliver på et senere tidspunkt. 
+
+
+
+		
+-Jobs (Man kan godt sætte jobs ind osv, den skal bare lige finpudses med de sidste funktioner)
+    Job post skal laves som pop-up (Som træning ved ikke om det skal bare popop)
+             
+        Tilpasselse af vinduet.
+
+        - Jobpost
+            Fjernet midlertigt insættelse af author, for at finde en løsning til insert problemet
+
+            Der skal lavs om i navnene i script og funktioner. jeg bliver forvirret af for mange samme navne..
+
+
+    Få tiden slettet, men datoen blive stående. ved selve job opslagende- 
+    Samt få et billede på af det spil der skal bruges hjælp til. så det også er næmere at overskue. og bliver mere farverigt. 
+
+    Rykke budget ned. 
+
+    Seach Engine
+
+    Job Counter skal fixet på selve job section. 
+
+-Games
+    Apply game skal på.
+    Games skal også godkendes. men bliver midlertidig godkendt så der kan postes med det samme.
+    Det system skal også laves. 
+
+
+Header
+    Popup for login og gennemgang til dashboard skal laves om

@@ -7,8 +7,9 @@
     "\\includes\\data",
     "\\includes\\data\\jobs",
     "\\includes\\data\\scripts",
-    "\\includes\\data\\users"
+    "\\includes\\data\\users",
+    "\\includes\\server"
   ],
-  "SelectedNode": "\\includes\\header.php",
+  "SelectedNode": "\\session.php",
   "PreviewInSolutionExplorer": false
 }

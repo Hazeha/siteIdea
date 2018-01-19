@@ -47,46 +47,46 @@
 
 	// Form ting til apply Script
 
-
-if(isset($_POST['btn-script-apply']))
-{
-	$scrName		= strip_tags($_POST['name_input']);
-	$scrDescription = strip_tags($_POST['description_input']);
-	$scrFeatures	= strip_tags($_POST['features_input']);	
-	$scrGame		= strip_tags($_POST['game_input']);	
-	$scrPrice		= strip_tags($_POST['price_input']);	
-
-
-	if($scrName=="")	{
-		$error[] = "provide name !";	
-	}
-	else if($scrDescription=="")	{
-		$error[] = "provide description !";	
-	}
-	else if($scrFeatures=="")	{
-		$error[] = "provide feature !";
-	}
-	else if($scrPrice=="")	{
-		$error[] = "provide price !";
-	}
-	else if($scrGame=="")	{
-		$error[] = "provide game !";
-	}
-	else
-	{	
-	try{
-		$auth_user->redirect('index.php');
-	}
-		catch(PDOException $e)
-		{
-			echo $e->getMessage();
+	if(isset($_POST['btn-script-apply']))
+	{
+		$scrName		= strip_tags($_POST['name_input']);
+		$scrDescription = strip_tags($_POST['description_input']);
+		$scrFeatures	= strip_tags($_POST['features_input']);	
+		$scrGame		= strip_tags($_POST['game_input']);	
+		$scrPrice		= strip_tags($_POST['price_input']);	
+	
+	
+		if($scrName=="")	{
+			$error[] = "provide name !";	
 		}
-	}	
-}
-
-
+		else if($scrDescription=="")	{
+			$error[] = "provide description !";	
+		}
+		else if($scrFeatures=="")	{
+			$error[] = "provide feature !";
+		}
+		else if($scrPrice=="")	{
+			$error[] = "provide price !";
+		}
+		else if($scrGame=="")	{
+			$error[] = "provide game !";
+		}
+		else{
+			try
+			{
+				if($script->scriptApply($scrName,$scrDescription,$scrFeatures,$scrGame,$scrPrice))
+				{
 	
+				}
 	
+				
+			}
+			catch(PDOException $e)
+			{
+			echo $e->getMessage();
+			}
+		}
+	}
 ?>
 
 <!DOCTYPE html>

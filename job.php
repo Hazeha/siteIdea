@@ -1,9 +1,9 @@
 <?php session_start();
 include 'includes/server/connect.php';
-
+require_once('class/jobClass.php'); 
 require_once('class/userClass.php');
 $auth_user = new USER();
-
+$job = new JOB();
 $stmt = $auth_user->runQuery("");
 											//Skal laves til PDO
 $job_seen = 10;
@@ -12,20 +12,18 @@ $job_apply = 8;
 											//Fetch funktion til job post, udfra det ID som blir vidergivet fra jobs index side.
 if(isset($_GET['jobId']))
 {
-    $jobId = $_GET['jobId'];
-    $job_selected = mysqli_query($conn, "SELECT jobName, jobDescription, jobMaxBudget, jobClientId, jobUploadDate, jobGame FROM job_tb WHERE jobId=$jobId");
-    
-
-    while ($post = $job_selected->fetch_assoc()) {
-        $job_name = $post["jobName"];
-        $job_description = $post["jobDescription"];
-        $job_salary_max = $post["jobMaxBudget"];
-        $job_upload = $post["jobUploadDate"];
-        
-        $job_game = $post["jobGame"];
-        $jobAuthor = $post["jobClientId"];
-    
-    }
+    $jobId = $_GET['jobId']; //Kan ikke sættes direkte ned i $job->jetGet
+    $job->jobGet($jobId);
+	$data = $job->jobGet($jobId);
+	foreach($data as $post)
+		{
+			$job_name = $post["jobName"];
+			$job_description = $post["jobDescription"];
+			$job_salary_max = $post["jobMaxBudget"];
+			$job_upload = $post["jobUploadDate"];			
+			$job_game = $post["jobGame"];
+			$jobAuthor = $post["jobClientId"];
+		}
 }
 
 ?>
@@ -105,24 +103,7 @@ if(isset($_GET['jobId']))
                                         <hr>
                                         <!-- Posted Comments -->
                                         <!-- Comment -->
-                                        <div class="media">
-                                            <a class="pull-left" href="#"><img alt="" class="media-object" src="http://placehold.it/64x64"></a>
-                                            <div class="media-body">
-                                                <h4 class="media-heading">Paul Pilfinger <small>August 25, 2014 at 9:30 PM</small></h4>A very nice addon for Roleplay server ;) Changes other drugs addon. A good recipe. All simply magnificent. Just buy this script. Sorry for my English ;)
-                                            </div>
-                                        </div><!-- Comment -->
-                                        <div class="media">
-                                            <a class="pull-left" href="#"><img alt="" class="media-object" src="http://placehold.it/64x64"></a>
-                                            <div class="media-body">
-                                                <h4 class="media-heading">Dr. Carsten <small>August 25, 2017 at 9:30 PM</small></h4>Good working meth system and really easy to use. Uses a more modern approach and realistic than the other competitors. <!-- Nested Comment -->
-                                                <div class="media">
-                                                    <a class="pull-left" href="#"><img alt="" class="media-object" src="http://placehold.it/64x64"></a>
-                                                    <div class="media-body">
-                                                        <h4 class="media-heading">Author <small>August 25, 2017 at 9:30 PM</small></h4>Thanks. Sorry for my English ;)
-                                                    </div>
-                                                </div><!-- End Nested Comment -->
-                                            </div>
-                                        </div>
+
                                         <hr>
                                         <div class="well">
                                             <h4>Leave a Comment:</h4>

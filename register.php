@@ -65,7 +65,6 @@ if(isset($_POST['btn-signup']))
 <title>Modbay : Sign up</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/css_new.css" rel="stylesheet">
-
 <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -118,11 +117,9 @@ if(isset($_POST['btn-signup']))
         </form>
        </div>
 </div>
-
 </div>
 <?php include 'includes/footer.php';?>
 		</div>
-
 </body>
 <script src="js/jquery.js">
 		</script> <!-- Bootstrap Core JavaScript -->

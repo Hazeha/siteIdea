@@ -5,7 +5,6 @@
 	class SCRIPT
 	{
 		private $conn;
-
 		public function __construct()
 		{
 			$database = new database();
@@ -19,17 +18,17 @@
 			return $stmt;
 		}
 
-		public function scriptApply($scrAuthor, $scrName, $scrDescription, $scrGame, $scrPrice, $scrFeatures )
+		public function scriptApply($scrName, $scrDescription, $scrGame, $scrPrice, $scrFeatures)
 		{
 			try
 			{
-				$stmt = $this->conn->prepare("INSERT INTO script_tb(name,description,features,price,game_id) VALUES(:sname, :sdescription, :sfeatures, :sprice, :game)");
+				$stmt = $this->conn->prepare("INSERT INTO script_tb (name,description,features,price,game_id) VALUES(:sname, :sdescription, :sfeatures, :sprice, :sgame)");
 
-				$stmt->bindparam(":sname", $scrName);
-				$stmt->bindparam(":sdescription", $scrDescription);
-				$stmt->bindparam(":sfeatures", $scrFeatures);
-				$stmt->bindparam(":sgame", $scrGame);
-				$stmt->bindparam(":sprice", $scrPrice);
+				$stmt->bindparam(':sname', $scrName);
+				$stmt->bindparam(':sdescription', $scrDescription);
+				$stmt->bindparam(':sfeatures', $scrFeatures);
+				$stmt->bindparam(':sprice', $scrPrice);
+				$stmt->bindparam(':sgame', $scrGame);
 
 				$stmt->execute();
 
