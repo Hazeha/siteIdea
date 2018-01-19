@@ -75,7 +75,7 @@ class JOB
 	}
 	//Her skal der laves en funktion der gør det muligt for content creators at ansøge om jobbet.
 	//Der skal også laves en funktion der fortæller om hvor mange der har ansøgt om jobbet.
-	public function applyJob()
+	public function jobRequest()
 	{
 
 	}
@@ -94,7 +94,7 @@ class JOB
 	}
 	//Skal bruges til at post comments til valgt job.
 	//
-	public function jobComment($jobId)
+	public function jobCommentShow($jobId)
 	{
 		foreach ($comment as $post)
 		{
