@@ -54,6 +54,14 @@
 		{
 		
 		}
+
+		public function getScript($scriptId)
+		{
+		$getMod = $this->conn->prepare("SELECT * FROM script_tb WHERE id=?");
+		$getMod->execute([$scriptId]);
+		$ModInfo = $getMod->fetchAll();
+		return $ModInfo;
+		}
 	}
 
 ?>

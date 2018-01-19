@@ -16,7 +16,7 @@
             
         }
         echo '<li><center> 
-        <a href="game_apply.php"> Apply Game </a></center>
+        <a href="dashboard.php"> Apply Game </a></center>
     </li>';
     }
 ?>

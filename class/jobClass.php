@@ -21,17 +21,19 @@ class JOB
 
 	// det er til at apply et job. Alts� lave jobopslag.
 	// Mangler stadig at få userId og Categorier.
-	public function jobApply($jobName, $jobDescription, $jobBudget, $jobGame)
+	public function jobApply($jobName, $jobClientId, $jobDescription, $jobBudgetMax, $jobBudgetMin, $jobGame, $jobCat)
 	{
 		try
 		{
-			$jobStmt = $this->conn->prepare("INSERT INTO job_tb (jobName,jobDescription,jobMaxBudget,jobGame) VALUES(:jname, :jdescription, :jmaxbudget, :jgame)");
+			$jobStmt = $this->conn->prepare("INSERT INTO job_tb (jobName,jobClientId,jobDescription,jobMaxBudget,jobMinBudget,jobGame,jobCat) VALUES(:jname, :jclient, :jdescription, :jmaxbudget, :jminbudget, :jgame, :jcat)");
 
 			$jobStmt->bindparam(":jname", $jobName);
+			$jobStmt->bindparam(":jclient", $jobClientId);
 			$jobStmt->bindparam(":jdescription", $jobDescription);
-			$jobStmt->bindparam(":jmaxbudget", $jobBudget);
+			$jobStmt->bindparam(":jmaxbudget", $jobBudgetMax);
+			$jobStmt->bindparam(":jminbudget", $jobBudgetMin);
 			$jobStmt->bindparam(":jgame", $jobGame);
-
+			$jobStmt->bindparam(":jcat", $jobCat);
 			$jobStmt->execute();
 
 			return $jobStmt;
@@ -58,7 +60,7 @@ class JOB
                 <div class="col-md-3 portfolio-item col-md-4">
                     <div class="thumbnail">
                         <div class="caption">
-                            <h4 class="pull-right">' . $post["jobMaxBudget"] . '$</h4>
+                            <h4 class="pull-right">' . $post["jobMinBudget"] . ' - ' . $post["jobMaxBudget"] . '$</h4>
                             <h4><a href="job.php?jobId=' .$post["id"]. '"> ' . $post["jobName"] . ' </a></h4>
                             <p> ' . $post["jobDescription"] . ' </p>
                         </div>
@@ -87,6 +89,22 @@ class JOB
 		$jobInfo = $getJob->fetchAll();
 		return $jobInfo;		
 	}
+
+	public function jobGameSelect()
+	{
+		$getGames = $this->conn->prepare("SELECT * FROM game_tb");
+		$getGames->execute();
+		$games = $getGames->fetchAll();
+
+		foreach($games as $row)
+		{
+			echo '
+				<option value=" ' .$row["name"] .' ">
+					' .$row["name"] .'
+                <option>
+			';
+		}
+	}
 	//Til Post af comment til job
 	public function jobCommentPost()
 	{
@@ -96,6 +114,7 @@ class JOB
 	//
 	public function jobCommentShow($jobId)
 	{
+		
 		foreach ($comment as $post)
 		{
 		echo' 

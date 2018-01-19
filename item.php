@@ -1,7 +1,33 @@
 <?php session_start();
 // Der skal laves meget om. alt skal laves til PDO. LAVES I scriptClass
-include 'includes/data/scripts/data_get.php';
-include 'includes/data/scripts/review_rounder.php'; 
+
+include 'includes/data/scripts/review_rounder.php';
+require_once 'class/scriptClass.php';
+require_once 'class/userClass.php';
+$userDataGet = NEW USER;
+$mod = NEW SCRIPT;
+if(isset($_GET['scriptId']))
+{
+    $modId = $_GET['scriptId']; //Kan ikke sættes direkte ned i $job->jetGet
+    $mod->getScript($modId);
+	$data = $mod->getScript($modId);
+	foreach($data as $post)
+		{
+		$script_name = $post["name"];
+        $script_description = $post["description"];
+        $script_feature = $post["features"];
+        $script_price = $post["price"];
+        $script_review_count = count($post["review_count"]);
+        $script_rating = $post["review_rating"];
+        $script_sales = $post["sales"];
+        $script_link = $post["script_link"];
+        $script_logo = $post['logo_link'];
+        $script_upload = $post["upload_date"];
+        $script_update = $post["update_date"];
+        $script_game = $post["game_id"];
+		$author_id = $post["user_id"];
+		}
+}
 
 
 ?>
@@ -90,14 +116,12 @@ include 'includes/data/scripts/review_rounder.php';
 
 <div class="col-md-4">
         <div class="well">
-                <h3 class="fa fa-gear"><?php echo $author_name; ?></h3>
-                <?php echo '<img class="media-object" src=" data:image/jpeg;base64,' . base64_encode( $post['logo_link']) . ' " alt="">';
+             
+                <?php $userDataGet->dogtag($author_id);
                  ?>
                 <img class="media-object" src=" <?php  ?>" alt="">
                            <a href=<?php echo $author_id; ?>>
-                            <div class="panel-footer">
-                                <button type="button" class="btn btn-primary btn-lg btn-block">View Profile</button>
-                            </div>
+                            
                             </a>
                 </div>
 

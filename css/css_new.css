@@ -33,6 +33,14 @@ input[type="text_job"] {
     border-radius: 3px; 
     border: 1px solid #eee;
 }
+input[type="text_job_pricetag"] {
+    outline: none;
+    padding: 10px;
+    display: block;
+    width: 120px;
+    border-radius: 3px;
+    border: 1px solid #eee;
+}
 input[type="submit"] {
     padding: 10px;
     color: #fff;

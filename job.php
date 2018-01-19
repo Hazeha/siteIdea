@@ -5,11 +5,11 @@ require_once('class/userClass.php');
 $auth_user = new USER();
 $job = new JOB();
 $stmt = $auth_user->runQuery("");
-											//Skal laves til PDO
+											
 $job_seen = 10;
 $job_comments = 4;							/* Variable til show af tabs i siden  og som skal laves */
 $job_apply = 8;
-											//Fetch funktion til job post, udfra det ID som blir vidergivet fra jobs index side.
+											
 if(isset($_GET['jobId']))
 {
     $jobId = $_GET['jobId']; //Kan ikke sættes direkte ned i $job->jetGet
@@ -20,9 +20,11 @@ if(isset($_GET['jobId']))
 			$job_name = $post["jobName"];
 			$job_description = $post["jobDescription"];
 			$job_salary_max = $post["jobMaxBudget"];
+			$job_salary_min = $post["jobMinBudget"];
 			$job_upload = $post["jobUploadDate"];			
 			$job_game = $post["jobGame"];
-			$jobAuthor = $post["jobClientId"];
+			$job_author = $post["jobClientId"];
+			$job_cat = $post["jobCat"];
 		}
 }
 
@@ -82,7 +84,7 @@ if(isset($_GET['jobId']))
                 <div class="row">
                     <div class="col-lg-8">
                         <h1><?php echo $job_name; ?></h1>
-                        <p class="lead">for <a href="#"><?php echo $job_game; ?></a> - <a href="#">Kategori</a></p>
+                        <p class="lead">for <a href="#"><?php echo $job_game; ?></a> - <?php echo $job_cat; ?></a></p>
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <ul class="nav nav-tabs">
@@ -121,11 +123,8 @@ if(isset($_GET['jobId']))
                         <!-- Comments Form -->
                     </div><!-- Blog Sidebar Widgets Column -->
                     <div class="col-md-4">
-                        <div class="well">
-                            <h4 class="fa fa-gear"><?php echo $author_name; ?></h4><img alt="" class="media-object" src="http://placehold.it/64x64"> <a href="#">
-                            <div class="panel-footer">
-                                <button class="btn btn-primary btn-lg btn-block" type="button">Apply For Job</button>
-                            </div></a>
+                        <div class="well"> <!-- clientwell -->
+                            <?php $auth_user->dogtag($job_author); ?>
                         </div>
                         <div class="panel panel-grey">
                             <div class="panel-heading">
@@ -135,10 +134,10 @@ if(isset($_GET['jobId']))
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div class="huge">
-                                            <?php echo $job_salary_max . '$'; ?>
+                                            <?php echo $job_salary_min . ' - ' . $job_salary_max . '$'; ?>
                                         </div>
                                         <div>
-                                            Max Budget
+                                            Budget
                                         </div>
                                     </div>
 									

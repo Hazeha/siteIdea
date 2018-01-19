@@ -30,20 +30,14 @@ Scripts
 
 		
 -Jobs (Man kan godt sætte jobs ind osv, den skal bare lige finpudses med de sidste funktioner)
-    Job post skal laves som pop-up (Som træning ved ikke om det skal bare popop)
-             
-        Tilpasselse af vinduet.
-
-        - Jobpost
-            Fjernet midlertigt insættelse af author, for at finde en løsning til insert problemet
-
-            Der skal lavs om i navnene i script og funktioner. jeg bliver forvirret af for mange samme navne..
-
-
-    Få tiden slettet, men datoen blive stående. ved selve job opslagende- 
-    Samt få et billede på af det spil der skal bruges hjælp til. så det også er næmere at overskue. og bliver mere farverigt. 
-
-    Rykke budget ned. 
+    T-Database get:
+		jobName,
+		jobClientId,
+		jobDescription,
+		jobMaxBudget,
+		jobMinBudget,
+		jobGame,		
+		jobCat
 
     Seach Engine
 

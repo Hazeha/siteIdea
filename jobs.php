@@ -2,18 +2,21 @@
 // Der skal laves en form app, der kan v�lge s�ge kreterier for forskellige jobs.
 // Der skal laves en form app til at apply for jobs. Jeg har allerede lavet funktonen (jobApply)
 // Skal ha ryddet op i koden.
-	session_start(); 
+	require_once("session.php");
     require_once("class/jobClass.php");
 	require_once("class/userClass.php");
     $jobs = new JOB();
     $auth_user = new USER();
-
+	$user_id = $_SESSION['user_session'];
     if(isset($_POST['btn-postJob']))
     {
         $jobName		= strip_tags($_POST['txt_jobName']);
+		$jobClientId		= strip_tags($user_id);
         $jobDescription	= strip_tags($_POST['txt_jobDescription']);	
-        $jobBudget		= strip_tags($_POST['txt_jobBudget']);    
+        $jobBudgetMax		= strip_tags($_POST['txt_jobBudgetMax']);   
+		$jobBudgetMin		= strip_tags($_POST['txt_jobBudgetMin']);   
         $jobGame        = strip_tags($_POST['txt_jobGame']);
+		$jobCat			= strip_tags($_POST['txt_jobCat']);   
     
         if($jobName=="")	{
             $error[] = "provide name !";	
@@ -21,7 +24,7 @@
         else{
             try
             {
-                if($jobs->jobApply($jobName,$jobDescription,$jobBudget,$jobGame))
+				if($jobs->jobApply($jobName,$jobClientId,$jobDescription,$jobBudgetMax,$jobBudgetMin,$jobGame,$jobCat))
                 {
                     
                 }               
@@ -55,7 +58,7 @@
             <!--Side Nav Start-->
             <ul class="sidebar-nav">
                 <li class="sidebar-sitepage">
-                    <h2><strong>Fixe med pdo: Jobs</strong></h2>
+                    <h2><strong> jobs</strong></h2>
                 </li>
                 
                 
@@ -130,14 +133,36 @@
                         Job Name
                         <input type="text_job" class="form-control" name="txt_jobName" placeholder="Name your job">
 
-                        Game
-                        <input type="text_job" class="form-control" name="txt_jobGame" placeholder="What game are we talking about">
+                       <label>Game</label> <select type="text_job" name="txt_jobGame" class="form-control">
+                            <?php $jobs->jobGameSelect();?>
+                        </select>
+
+						<label>Category</label> <select type="text_job" name="txt_jobCat" class="form-control">
+                            <option value="Roleplaying">
+                                Roleplaying
+                            </option>
+                            <option value="Modeling">
+                                Modeling
+                            </option>
+                            <option value="Mapping">
+                                Mapping
+                            </option>
+                            <option value="Scripting">
+                                Scripting
+                            </option>
+                            <option value="Any">
+                                Any
+                            </option>
+                        </select>
 
                         Description
                         <textarea type="text_job" class="form-control" name="txt_jobDescription" rows="2" placeholder="Max 250 chars"></textarea>
 
-                        <label for="txt_jobBudget">Budget</label>
-                        <input type="text_job" class="form-control" name="txt_jobBudget" placeholder="What is your maximum budget">
+                        <label for="txt_jobBudget">Max Budget</label>
+                        <input type="text_job" class="form-control" name="txt_jobBudgetMax" placeholder="What is your maximum budget">
+						
+						<label for="txt_jobBudget">Min Budget</label>
+                        <input type="text_job" class="form-control" name="txt_jobBudgetMin" placeholder="What is your min budget">
 
                         <button type="submit" class="btn btn-primary" name="btn-postJob">Post Your Job!</button>
                     </div>

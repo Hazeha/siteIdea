@@ -96,5 +96,24 @@ class USER
 		unset($_SESSION['user_session']);
 		return true;
 	}
+
+	public function dogtag($clientId)
+	{
+		$getClient = $this->conn->prepare("SELECT * FROM users WHERE user_id=?");
+		$getClient->execute([$clientId]);
+		$client = $getClient->fetchAll();
+		foreach($client as $tag)
+		echo '
+							<h4 class="fa fa-gear"> '. $tag["user_name"] .'</h4><img alt="" class="media-object" src="http://placehold.it/64x64"> <a href="#">
+                            <div class="panel-footer">
+                                <button class="btn btn-primary btn-sm btn-block" type="button">Go to profile</button>
+                            </div></a>
+			';
+	}
+
+	public function GetData($userId)
+	{
+		
+	}
 }
 ?>
