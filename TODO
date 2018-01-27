@@ -3,6 +3,7 @@ Overordnet:
     Job insert virker. Men skal implementeres og laves færdig med alle data.
     Register virker. Men profile settings og flere data skal laves og kunne insættes.
 
+	Alt hvad der har med ID at gøre skal laves til stort ID
 
 Alle funktioner fra includes skal ligges ind i job\Script\Useer classes.
 Indsættelse af script er lykkedes.
@@ -12,7 +13,7 @@ Indsættelse af script er lykkedes.
 
 
 
-Scripts
+## Scripts
         -Datoer skal laves om så tiden ikke visses men kun dato.
         -Har lagt mærke til at scripts automatisk har 3 stjerner.(find ud af hvorfor) 
             Den funktion skal ligges ind i ScriptClass og laves ordenligt. 
@@ -26,10 +27,23 @@ Scripts
 
         Script upload skal laves færdig. men det bliver på et senere tidspunkt. 
 
+	T-Database get:
+		scrName
+		scrGame
+		scrPrice
+		scrUserID
+		scrDescription
+		scrFeatures
+		scrSales
+		scrRating
+		scrViews
+		scrTags
+		scrID
+
 
 
 		
--Jobs (Man kan godt sætte jobs ind osv, den skal bare lige finpudses med de sidste funktioner)
+## Jobs (Man kan godt sætte jobs ind osv, den skal bare lige finpudses med de sidste funktioner)
     T-Database get:
 		jobName,
 		jobClientId,
@@ -43,11 +57,16 @@ Scripts
 
     Job Counter skal fixet på selve job section. 
 
--Games
+## Games
     Apply game skal på.
     Games skal også godkendes. men bliver midlertidig godkendt så der kan postes med det samme.
     Det system skal også laves. 
 
 
-Header
+## Header
     Popup for login og gennemgang til dashboard skal laves om
+
+## Footer
+	Ligger som function midlertidigt pga PDO connection fra userClass.php
+	Har ikke kunne "parse" data.
+	Vil gerne havde counteren som function som kan bruges flere steder istedet for en hel footer function.

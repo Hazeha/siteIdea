@@ -26,6 +26,7 @@ if(isset($_GET['scriptId']))
         $script_update = $post["update_date"];
         $script_game = $post["game_id"];
 		$author_id = $post["user_id"];
+
 		}
 }
 

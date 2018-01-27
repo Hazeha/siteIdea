@@ -1,5 +1,7 @@
 <?php session_start(); 
-// OHH YEAH! THE PDO BEAR IS HERE!
+
+	require_once("class/scriptClass.php");
+	$mod = NEW SCRIPT;
 
 ?>
 <!DOCTYPE html>
@@ -21,7 +23,7 @@
             <ul class="sidebar-nav">
                 <li class="sidebar-sitepage">
                     <h3><strong>Games</strong></h3>
-                </li>                                <!-- OBS NÆSTEN OK -->
+                </li>                                <!-- OBS NÆSTEN OK -- Not at all - Skal laves til PDO-->
         <?php include 'includes/data/scripts/game_sidenav.php'; ?>
         </ul> 
          </div>
@@ -34,7 +36,7 @@
         </div>  
 
         <div class="container-fluid">           
-            <?php include 'includes/data/scripts/market_script.php';?>        
+            <?php $mod->scriptPost();?>        
         </div>
         
         

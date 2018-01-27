@@ -1,5 +1,5 @@
 <?php
-
+	//Stort set alt her skal laves om til PDO connection og smides i classes. Incl redesign af selve dashboard
 	require_once("session.php");
 
 
@@ -15,14 +15,14 @@
 	$stmt->execute(array(":user_id"=>$user_id));	
 	$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
 
-	// User Script Counter
+	// User Script Counter Skal laves om til en function 
 	$userScriptCount = $auth_user->runQuery('SELECT count(*) FROM script_tb WHERE user_id=:user_id')->fetchColumn(); 
 	
 
 
 
 
-	// Script tæller - - Dette skal laves om til PDO.
+	// Script tæller - - Dette skal laves om til PDO og smides ind i function.
 	include 'includes/server/connect.php';  
     $user_scripts = mysqli_query($conn, "SELECT id FROM script_tb WHERE user_id=$user_id");
 	

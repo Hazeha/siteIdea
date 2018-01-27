@@ -1,4 +1,5 @@
 <?php
+	//Det her skal bare væk og smides ind i en function. 
     include 'includes/server/connect.php';
 
 

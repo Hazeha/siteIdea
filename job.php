@@ -4,7 +4,7 @@ require_once('class/jobClass.php');
 require_once('class/userClass.php');
 $auth_user = new USER();
 $job = new JOB();
-$stmt = $auth_user->runQuery("");
+$stmt = $auth_user->runQuery(""); //?? Baske??
 											
 $job_seen = 10;
 $job_comments = 4;							/* Variable til show af tabs i siden  og som skal laves */
