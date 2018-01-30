@@ -1,7 +1,7 @@
 <?php 
 
 	require_once 'includes/server/loginConfig.php';
-
+	
 	class SCRIPT
 	{
 		private $conn;
@@ -135,10 +135,10 @@
 				echo $e->getMessage();
 			}
 		}
+
 		/*
 		Function der poster reviews. 
-		Mangler at få client oplysninger.
-		userID er klar til brug.
+		Done
 		*/
 		function reviewPost($modId)
 		{
@@ -148,7 +148,11 @@
 
 			foreach($reviewData as $post)
 				{
-					switch ($post["rating"]) {
+				$userID = $post["user_id"];
+				$getUser = $this->conn->prepare("SELECT user_id, user_name, user_logo FROM users WHERE user_id=?");
+				$getUser->execute([$userID]);
+				$userInfo = $getUser->fetchAll();
+				switch ($post["rating"]) {
 					case '1':
 						$rating = '<i class="fa fa-star fa-2x"></i> 
 									<i class="fa fa-star-o fa-2x"></i>
@@ -187,21 +191,26 @@
 					default:
 		
 					break;
-			}
+					}
+
+				foreach($userInfo as $userPost)
+				{
 				echo '
 				<div class="media">
-
-                    <a class="pull-left" href="#"><img alt="" class="media-object" src="http://placehold.it/64x64"></a>
+                    <a class="pull-left" href="#">
+					<img alt="" class="img-thumbnail" src="data:image/jpeg;base64,'. base64_encode($userPost["user_logo"]) .'">
+					</a>
                     
                     <div class="media-body">
                     	<div class="pull-right">'.$rating.'</div>
-                        <h4 class="media-heading">'.$post["user_id"].' <small>'.$post["time_stamp"].'</small></h4>'.$post["review_text"].'
+                        <h4 class="media-heading">'.$userPost["user_name"].' <small>'.$post["time_stamp"].'</small></h4>'.$post["review_text"].'
 
 
                     </div>
                 </div><!-- Comment -->                                        
                 <hr>
 				';
+				}
 				}
 		}
 		/*
@@ -224,21 +233,21 @@
 			}
 			$rounded_review = round($review_rating / $review_count);
 
-			if ($rounded_review == 0) {       
+			if ($rounded_review > 0) {       
                 $avg_rating = '<i class="fa fa-star-o fa-2x"></i> 
                                 <i class="fa fa-star-o fa-2x"></i>
                                 <i class="fa fa-star-o fa-2x"></i> 
                                 <i class="fa fa-star-o fa-2x"></i>
                                 <i class="fa fa-star-o fa-2x"></i>';
 			}
-            if ($rounded_review == 1) {        
+            if ($rounded_review > 1.4) {        
                 $avg_rating = '<i class="fa fa-star fa-2x"></i>
                  <i class="fa fa-star-o fa-2x"></i>
                  <i class="fa fa-star-o fa-2x"></i>
                  <i class="fa fa-star-o fa-2x"></i>
                  <i class="fa fa-star-o fa-2x"></i>';
 			}
-            if ($rounded_review == 2) {
+            if ($rounded_review > 2.4) {
  
                  $avg_rating = '<i class="fa fa-star fa-2x"></i>
                          <i class="fa fa-star fa-2x"></i>
@@ -246,7 +255,7 @@
                          <i class="fa fa-star-o fa-2x"></i>
                          <i class="fa fa-star-o fa-2x"></i>';
              }
-             if ($rounded_review == 3) {
+             if ($rounded_review > 3.4) {
 
                  $avg_rating = '<i class="fa fa-star fa-2x"></i>
                      <i class="fa fa-star fa-2x"></i>
@@ -254,7 +263,7 @@
                      <i class="fa fa-star-o fa-2x"></i>
                      <i class="fa fa-star-o fa-2x"></i>'; 
              }  
-             if ($rounded_review == 4) {
+             if ($rounded_review > 4) {
 
                  $avg_rating = '<i class="fa fa-star fa-2x"></i>
                  <i class="fa fa-star fa-2x"></i>
@@ -263,7 +272,7 @@
                  <i class="fa fa-star-o fa-2x"></i>';
              }
              
-             if ($rounded_review >= 5) {
+             if ($rounded_review >= 4.5) {
                  
                  $avg_rating = '<i class="fa fa-star fa-2x"></i>
                  <i class="fa fa-star fa-2x"></i>
@@ -272,6 +281,14 @@
                  <i class="fa fa-star fa-2x"></i>';                                                   
              }
 			return $avg_rating;
+		}
+
+		function getUser($userID)
+		{
+			$getUser = $this->conn->prepare("SELECT user_id, user_name, user_logo FROM users WHERE id=?");
+			$getUser->execute([$userID]);
+			$userInfo = $getUser->fetchAll();
+			return $userInfo;
 		}
 
 	}
