@@ -11,10 +11,10 @@
     if(isset($_POST['btn-postJob']))
     {
         $jobName		= strip_tags($_POST['txt_jobName']);
-		$jobClientId		= strip_tags($user_id);
+		$jobClientId	= strip_tags($user_id);
         $jobDescription	= strip_tags($_POST['txt_jobDescription']);	
-        $jobBudgetMax		= strip_tags($_POST['txt_jobBudgetMax']);   
-		$jobBudgetMin		= strip_tags($_POST['txt_jobBudgetMin']);   
+        $jobBudgetMax	= strip_tags($_POST['txt_jobBudgetMax']);   
+		$jobBudgetMin	= strip_tags($_POST['txt_jobBudgetMin']);   
         $jobGame        = strip_tags($_POST['txt_jobGame']);
 		$jobCat			= strip_tags($_POST['txt_jobCat']);   
     
@@ -133,11 +133,13 @@
                         Job Name
                         <input type="text_job" class="form-control" name="txt_jobName" placeholder="Name your job">
 
-                       <label>Game</label> <select type="text_job" name="txt_jobGame" class="form-control">
+                       <label>Game</label> 
+					   <select type="text_job" name="txt_jobGame" class="form-control">
                             <?php $jobs->jobGameSelect();?>
                         </select>
 
-						<label>Category</label> <select type="text_job" name="txt_jobCat" class="form-control">
+						<label>Category</label> 
+						<select type="text_job" name="txt_jobCat" class="form-control">
                             <option value="Roleplaying">
                                 Roleplaying
                             </option>

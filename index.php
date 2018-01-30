@@ -24,7 +24,7 @@
                 <li class="sidebar-sitepage">
                     <h3><strong>Games</strong></h3>
                 </li>                                <!-- OBS NÆSTEN OK -- Not at all - Skal laves til PDO-->
-        <?php include 'includes/data/scripts/game_sidenav.php'; ?>
+        <?php $mod->modGameNav(); ?>
         </ul> 
          </div>
         <div class="container-fluid">

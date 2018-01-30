@@ -1,16 +1,17 @@
-<?php session_start();
+<?php 
 // Der skal laves meget om. alt skal laves til PDO. LAVES I scriptClass
+	require_once("session.php");
 
-include 'includes/data/scripts/review_rounder.php';
 require_once 'class/scriptClass.php';
 require_once 'class/userClass.php';
-$userDataGet = NEW USER;
+$user = NEW USER;
 $mod = NEW SCRIPT;
 if(isset($_GET['scriptId']))
 {
     $modId = $_GET['scriptId']; //Kan ikke sættes direkte ned i $job->jetGet
     $mod->getScript($modId);
 	$data = $mod->getScript($modId);
+	$modRating = $mod->avgRating($modId);
 	foreach($data as $post)
 		{
 		$script_name = $post["name"];
@@ -18,7 +19,7 @@ if(isset($_GET['scriptId']))
         $script_feature = $post["features"];
         $script_price = $post["price"];
         $script_review_count = count($post["review_count"]);
-        $script_rating = $post["review_rating"];
+        $script_rating = $modRating;
         $script_sales = $post["sales"];
         $script_link = $post["script_link"];
         $script_logo = $post['logo_link'];
@@ -29,6 +30,29 @@ if(isset($_GET['scriptId']))
 
 		}
 }
+
+    if(isset($_POST['btn-createReview']))
+    {
+        $modID		= strip_tags($_GET['scriptId']);
+		$userID		= strip_tags($_SESSION['user_session']);
+        $reviewTxt	= strip_tags($_POST['txt_review']);
+        $userRating	= strip_tags($_POST['ratingDropdown']);
+
+        if($reviewTxt="")	{
+            $error[] = "provide review !";	
+        }
+        else
+		{
+            try
+			{
+				$mod->createReview($modID,$userID,$reviewTxt,$userRating);
+            }
+            catch(PDOException $e)
+            {
+            echo $e->getMessage();
+            }
+        }
+    }
 
 
 ?>
@@ -93,17 +117,37 @@ if(isset($_GET['scriptId']))
                                         <hr>
                                         <!-- Comment Skal laves Helt om aner ikke hvordan -->
 
-                                       <?php include 'includes/data/scripts/review_post.php'; ?> 
+                                       <?php $script_rating; ?> 
 
+									   
 
                                         <div class="well">
+										<?php $mod->reviewPost($modId); ?>
                                             <h4>Leave a Review:</h4>
-                                            <form role="form">
-                                                <div class="form-group">
-                                                    <textarea class="form-control" rows="3"></textarea>
-                                                </div><button class="btn btn-primary" type="submit">Submit</button>
-                                                <?php echo $rounded_review; ?> 
-                                            </form>
+
+                                            <form role="form" method="post">											
+                                                <textarea type="text" class="form-control" rows="3" name="txt_review"></textarea>
+												<label>Rating</label> 
+												<select type="text" name="ratingDropdown" class="form-control">
+						                            <option value="1">
+						                                1
+						                            </option>
+						                            <option value="2">
+						                                2
+						                            </option>
+						                            <option value="3">
+						                                3
+						                            </option>
+						                            <option value="4">
+						                                4
+						                            </option>
+						                            <option value="5">
+						                                5
+						                            </option>
+												</select>
+												<button class="btn btn-primary" type="submit" name="btn-createReview">Submit</button>
+											
+											</form>
                                         </div>
                                     </div>
                                 </div>
@@ -118,7 +162,7 @@ if(isset($_GET['scriptId']))
 <div class="col-md-4">
         <div class="well">
              
-                <?php $userDataGet->dogtag($author_id);
+                <?php $user->dogtag($author_id);
                  ?>
                 <img class="media-object" src=" <?php  ?>" alt="">
                            <a href=<?php echo $author_id; ?>>
@@ -167,7 +211,7 @@ if(isset($_GET['scriptId']))
                                 <div class="col-xs-3">
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                <?php echo $avg_rating; ?>
+                                <?php echo $script_rating; ?>
                                     <div>Ratings</div>
                                 </div>
                             </div>
