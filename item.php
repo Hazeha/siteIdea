@@ -11,7 +11,7 @@ if(isset($_GET['scriptId']))
     $modId = $_GET['scriptId']; //Kan ikke sættes direkte ned i $job->jetGet
     $mod->getScript($modId);
 	$data = $mod->getScript($modId);
-	$modRating = $mod->avgRating($modId);
+	$modRating = $mod->avgRating($modId); //Tænk ikke på den bliver kaldt til en anden variable nedenfor.
 	foreach($data as $post)
 		{
 		$script_name = $post["name"];
@@ -38,20 +38,15 @@ if(isset($_GET['scriptId']))
         $reviewTxt	= strip_tags($_POST['txt_review']);
         $userRating	= strip_tags($_POST['ratingDropdown']);
 
-        if($reviewTxt="")	{
-            $error[] = "provide review !";	
-        }
-        else
+        try
 		{
-            try
-			{
-				$mod->createReview($modID,$userID,$reviewTxt,$userRating);
-            }
-            catch(PDOException $e)
-            {
-            echo $e->getMessage();
-            }
+			$mod->createReview($modID,$userID,$reviewTxt,$userRating);
         }
+        catch(PDOException $e)
+        {
+			echo $e->getMessage();
+        }
+        
     }
 
 
@@ -103,9 +98,9 @@ if(isset($_GET['scriptId']))
                                 <div class="tab-content">
                                     <div class="tab-pane fade in active" id="overview">
 
-                                        <?php  echo '<img class="img-responsive" src="data:image/jpeg;base64,'. base64_encode($script_logo) .'">'; ?> <!-- Problem her, læser ikke img filen i encode -->
+                                        <?php  echo '<img class="img-responsive" src="data:image/jpeg;base64,'. base64_encode($script_logo) .'">'; ?>
                                         <hr>
-                                        <!-- Post Content -->
+                                        <!--Skal lige ligges ind i function -->
                                         <p class="lead"><?php echo $script_description; ?></p>
                                     </div>
                                     <div class="tab-pane fade" id="itemdetail">
@@ -117,18 +112,17 @@ if(isset($_GET['scriptId']))
                                         <hr>
                                         <!-- Comment Skal laves Helt om aner ikke hvordan -->
 
-                                       <?php $script_rating; ?> 
+                                 
+										
+										<div class="well">
 
-									   
+											<?php $mod->reviewPost($modId); ?> <!-- Poster reviews -->                                            
 
-                                        <div class="well">
-										<?php $mod->reviewPost($modId); ?>
-                                            <h4>Leave a Review:</h4>
-
-                                            <form role="form" method="post">											
-                                                <textarea type="text" class="form-control" rows="3" name="txt_review"></textarea>
+                                            <form method="post" role="form">
+												<label>Leave a Review:</label>
+                                                <textarea type="text_job" class="form-control" name="txt_review" rows="3"></textarea>
 												<label>Rating</label> 
-												<select type="text" name="ratingDropdown" class="form-control">
+												<select type="text_job" class="form-control" name="ratingDropdown">
 						                            <option value="1">
 						                                1
 						                            </option>
@@ -146,8 +140,8 @@ if(isset($_GET['scriptId']))
 						                            </option>
 												</select>
 												<button class="btn btn-primary" type="submit" name="btn-createReview">Submit</button>
-											
 											</form>
+
                                         </div>
                                     </div>
                                 </div>

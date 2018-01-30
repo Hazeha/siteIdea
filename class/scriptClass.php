@@ -90,7 +90,11 @@
 			return $ModInfo;
 		}
 
-		//Sidenav
+		/*
+		Game nav.
+		ikke done.
+		Overvejer at lave søgemaskinen til controller af viste mods.
+		*/
 		public function modGameNav()
 		{
 			$getGames = $this->conn->prepare("SELECT * FROM game_tb");
@@ -112,8 +116,7 @@
 		}
 		/*
 		Function til at lave reviews. 
-		Har problemer med at indsætte Rating og review
-		ModID og userID virker fint. Men det er nok $_POST der er problemet
+		Done
 		*/
 		public function createReview($modID, $userID, $reviewTxt, $userRating)
 		{
@@ -132,7 +135,11 @@
 				echo $e->getMessage();
 			}
 		}
-
+		/*
+		Function der poster reviews. 
+		Mangler at få client oplysninger.
+		userID er klar til brug.
+		*/
 		function reviewPost($modId)
 		{
 			$getRev = $this->conn->prepare("SELECT * FROM review_tb WHERE mod_id=?");
@@ -197,6 +204,10 @@
 				';
 				}
 		}
+		/*
+		Function der udregner avg rating.
+		Done - der skal måske lige calculeres med at man aldrig kan få 5 stjerner hvis 1 voter mindre.  rating > 4.5 = 5 stars
+		*/
 		public function avgRating($modId)
 		{
 			$getRev = $this->conn->prepare("SELECT * FROM review_tb WHERE mod_id=?");
