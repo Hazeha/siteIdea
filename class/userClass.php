@@ -168,5 +168,6 @@ class USER
 			</div>
 		';
 	}
+
 }
 ?>

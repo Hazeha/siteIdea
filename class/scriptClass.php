@@ -16,9 +16,11 @@
 			$stmt = $this->conn->prepare($sql);
 			return $stmt;
 		}
-		//Script apply, altså at søge om at sælge sit script.
-		//Der skal laves en verify, så admins så skal godkende scriptet for at sælge modded.
-		//Der mangler stadig nogen ting som skal ind.
+		/*
+		Script apply, altså at søge om at sælge sit script.
+		Der skal laves en verify, så admins så skal godkende scriptet for at sælge modded.
+		Der mangler stadig nogen ting som skal ind.
+		*/
 		public function scriptApply($scrName, $scrDescription, $scrGame, $scrPrice, $scrFeatures)
 		{
 			try
@@ -40,8 +42,10 @@
 			echo $e->getMessage();
 			}
 		}
-		//Funktion der poster scripts på index siden.
-		//Der skal alves en search engine udfra dette.
+		/*
+		Funktion der poster scripts på index siden.
+		Der skal alves en search engine udfra dette.
+		*/
 		public function scriptPost()
 		{
 			$getMods = $this->conn->prepare("SELECT * FROM script_tb ORDER BY upload_date ASC");
@@ -52,6 +56,7 @@
 			foreach($mod as $post)//Mangler jobCat
 			{
 				$modRating = $this->avgRating($post["id"]);
+				$reviewCount = $this->reviewCount($post["id"]);
 				echo '
 				<div class="col-md-3 portfolio-item col-md-4">
                 	    <div class="thumbnail">
@@ -62,12 +67,118 @@
                            	<h5>' . $post["game_id"] . ' - ' . $post["categori"] . '</h5>
                         </div>
                         <div class="ratings">
-                           	<p class="pull-right">' . $post["review_count"] . ' Reviews</p>                          
+                           	<p class="pull-right">' . $reviewCount . ' Reviews</p>                          
                           	<p>'. $modRating . '</p>                            
                         </div>
                     </div>
                 </div>
 				';		
+			}
+		}
+		/*
+		Poster mods til on sale ved dashboard 
+		*/
+		public function userScriptPost($userID)
+		{
+			$getMods = $this->conn->prepare("SELECT * FROM script_tb WHERE user_id=?");
+			$getMods->execute([$userID]);
+			$mod = $getMods->fetchAll();
+
+
+			foreach($mod as $post)//Mangler jobCat
+			{
+				$modRating = $this->avgRating($post["id"]);
+				$reviewCount = $this->reviewCount($post["id"]);
+				$sales = $this->saleCount($post["id"]);
+				echo '
+
+				<div class="col-lg-6">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div class="panel-heading pull-right  col-lg-5">
+								<strong>'. $post["name"] .'</strong>
+								<hr>
+								<ul>
+									<li>Price : '. $post["price"] .'$
+									</li>
+									<li>Sales : '. $sales .'
+									</li>
+									<li>Date Added : '.$post["upload_date"].'
+									</li>
+									<li>Game : '. $post["game_id"] .'
+									</li>
+									<li>Reviews : ' . $reviewCount . '
+									</li>
+									<div class="ratings">                       
+                          				<p>'. $modRating . '</p>                            
+									</div>
+									<li>
+										<a href="#">Update your script</a>
+									</li>
+								</ul>
+							</div>
+							<div class="col-lg-7">
+							<img class="img-modDashboard" src="data:image/jpeg;base64,' . base64_encode( $post['logo_link']) . '" height="20%">
+							<img class="img-thumbnail pull-left" src="data:image/jpeg;base64,' . base64_encode( $post['logo_link']) . '" width="33%">
+							<img class="img-thumbnail pull-left" src="data:image/jpeg;base64,' . base64_encode( $post['logo_link']) . '" width="33%">
+							<img class="img-thumbnail pull-left" src="data:image/jpeg;base64,' . base64_encode( $post['logo_link']) . '" width="33%">
+							</div>
+						</div>											
+					</div>
+				</div>
+				';		
+			}
+		}
+		/*
+			Posting bought mod
+			Virker sådan ligetil. 
+			Søger i "kviteringer" efter user id, og derefter leder efter modded der er på "kvitten"
+		*/
+		public function userBoughtMod($userID)
+		{
+			$bong = $this->conn->prepare("SELECT * FROM modsales_tb WHERE user_id=?");
+			$bong->execute([$userID]);
+			$buy = $bong->fetchAll();
+
+			foreach($buy as $post)
+			{
+				$getMod = $this->runQuery("SELECT * FROM script_tb WHERE id=?");
+				$getMod->execute(array($post["mod_id"]));	
+				$modPost=$getMod->fetch(PDO::FETCH_ASSOC);
+
+
+				echo'
+					<div class="panel panel-default">
+					<div class="panel-body">
+					
+						<div class="panel-heading pull-right col-lg-3">
+							<strong> '.$modPost["name"].' </strong>
+						<hr>
+							<ul>
+								<li>Price : '. $modPost["price"] .'$
+								</li>
+								<li>Updated : '.$modPost["update_date"].'
+								</li>
+								<li>Bought : '. $modPost["upload_date"] .' 
+								</li>
+								<li>Game : '. $modPost["game_id"] .'
+								</li>
+								<li><a href="">Update Avaible</a>
+								</li>
+							</ul>
+						</div>
+						<div class="panel-body col-lg-3">
+							<img class="img-thumbnail pull-left" src="data:image/jpeg;base64,' . base64_encode( $modPost['logo_link']) . '" width="100%">
+							<img class="img-thumbnail pull-left" src="data:image/jpeg;base64,' . base64_encode( $modPost['logo_link']) . '" width="33%">
+							<img class="img-thumbnail pull-left" src="data:image/jpeg;base64,' . base64_encode( $modPost['logo_link']) . '" width="33%">
+							<img class="img-thumbnail pull-left" src="data:image/jpeg;base64,' . base64_encode( $modPost['logo_link']) . '" width="33%">
+						</div>
+						<div class="panel-body col-lg-6">
+						<p> ' . $modPost["description"] . '</p>
+						</div>
+					</div>
+				</div>
+				';
 			}
 		}
 		//Funktion der giver admins lov at verify mods, så de kommer på marketplace. 
@@ -139,6 +250,7 @@
 		/*
 		Function der poster reviews. 
 		Done
+		Måske skal der sales user på.
 		*/
 		function reviewPost($modId)
 		{
@@ -198,7 +310,7 @@
 				echo '
 				<div class="media">
                     <a class="pull-left" href="#">
-					<img alt="" class="img-thumbnail" src="data:image/jpeg;base64,'. base64_encode($userPost["user_logo"]) .'">
+					<img alt="" class="img-thumbnail" height="128px" width="128px" src="data:image/jpeg;base64,'. base64_encode($userPost["user_logo"]) .'">
 					</a>
                     
                     <div class="media-body">
@@ -215,7 +327,7 @@
 		}
 		/*
 		Function der udregner avg rating.
-		Done - der skal måske lige calculeres med at man aldrig kan få 5 stjerner hvis 1 voter mindre.  rating > 4.5 = 5 stars
+		Done
 		*/
 		public function avgRating($modId)
 		{
@@ -231,9 +343,17 @@
 				$review_count = $review_count + 1;
 				$review_rating = $review_rating + $post["rating"];
 			}
-			$rounded_review = round($review_rating / $review_count);
+			if($review_count > 0)
+			{
+				$rounded_review = round($review_rating / $review_count);
+			}
+			else
+			{
+				$rounded_review = 0;
+			}
+			
 
-			if ($rounded_review > 0) {       
+			if ($rounded_review >= 0) {       
                 $avg_rating = '<i class="fa fa-star-o fa-2x"></i> 
                                 <i class="fa fa-star-o fa-2x"></i>
                                 <i class="fa fa-star-o fa-2x"></i> 
@@ -282,7 +402,22 @@
              }
 			return $avg_rating;
 		}
-
+		/*
+		Counts review for det enkelte mod.
+		*/
+		function reviewCount($modID)
+		{
+			$revCount = $this->conn->query("SELECT count(*) FROM review_tb WHERE mod_id=$modID")->fetchColumn();
+			return $revCount;
+		}
+		public function saleCount($modID)
+		{
+			$sales = $this->conn->query("SELECT count(*) FROM modsales_tb WHERE mod_id=$modID")->fetchColumn();
+			return $sales;
+		}
+		/*
+		Get user details.
+		*/
 		function getUser($userID)
 		{
 			$getUser = $this->conn->prepare("SELECT user_id, user_name, user_logo FROM users WHERE id=?");
@@ -290,6 +425,7 @@
 			$userInfo = $getUser->fetchAll();
 			return $userInfo;
 		}
+
 
 	}
 ?>

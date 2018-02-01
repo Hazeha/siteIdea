@@ -91,11 +91,12 @@ input[type=submit]:hover {
     }
 
 }
-.img-thumbnail {
+
+.img-modDashboard {
     display: inline-block;
-    max-width: 64px;
-    height: 64px;
-    padding: 1px;
+    max-width: 100%;
+    height: auto%;
+    padding: 4px;
     line-height: 1.42857143;
     background-color: #fff;
     border: 1px solid #ddd;
@@ -375,7 +376,7 @@ textarea {
     left: 0;
     right: 0;
     text-align: center;
-    min-height: 13%;
+    min-height: 50px;
 }
 #footer .icons {
     margin: 0 0 4em 0;

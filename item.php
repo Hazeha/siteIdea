@@ -9,18 +9,19 @@ $mod = NEW SCRIPT;
 if(isset($_GET['scriptId']))
 {
     $modId = $_GET['scriptId']; //Kan ikke sættes direkte ned i $job->jetGet
-    $mod->getScript($modId);
 	$data = $mod->getScript($modId);
-	$modRating = $mod->avgRating($modId); //Tænk ikke på den bliver kaldt til en anden variable nedenfor.
+	$modRating = $mod->avgRating($modId); //Tænk ikke på de bliver kaldt til en anden variable nedenfor.
+	$modRatingCount = $mod->reviewCount($modId);
+	$modSales = $mod->saleCount($modId);
 	foreach($data as $post)
 		{
 		$script_name = $post["name"];
         $script_description = $post["description"];
         $script_feature = $post["features"];
         $script_price = $post["price"];
-        $script_review_count = count($post["review_count"]);
+        $script_review_count = $modRatingCount;
         $script_rating = $modRating;
-        $script_sales = $post["sales"];
+        $script_sales = $modSales;
         $script_link = $post["script_link"];
         $script_logo = $post['logo_link'];
         $script_upload = $post["upload_date"];
@@ -203,10 +204,11 @@ if(isset($_GET['scriptId']))
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
+								<div class="medium"></div>
                                 </div>
                                 <div class="col-xs-9 text-right">
                                 <?php echo $script_rating; ?>
-                                    <div>Ratings</div>
+                                   <div>Rating</div>
                                 </div>
                             </div>
                         </div>

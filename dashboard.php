@@ -1,43 +1,25 @@
 <?php
-	//Stort set alt her skal laves om til PDO connection og smides i classes. Incl redesign af selve dashboard
 	require_once("session.php");
-
-
-	
 	require_once('class/scriptClass.php');
 	require_once("class/userClass.php");
-	$auth_user = new USER();
-	$script = new SCRIPT();
+	$user = new USER();
+	$mod = new SCRIPT();
 	
 	$user_id = $_SESSION['user_session'];
 	
-	$stmt = $auth_user->runQuery("SELECT * FROM users WHERE user_id=:user_id");
+	$stmt = $user->runQuery("SELECT * FROM users WHERE user_id=:user_id");
 	$stmt->execute(array(":user_id"=>$user_id));	
 	$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
 
 	// User Script Counter Skal laves om til en function 
-	$userScriptCount = $auth_user->runQuery('SELECT count(*) FROM script_tb WHERE user_id=:user_id')->fetchColumn(); 
-	
+	$userScriptCount = 2;
 
-
-
-
-	// Script tæller - - Dette skal laves om til PDO og smides ind i function.
-	include 'includes/server/connect.php';  
-    $user_scripts = mysqli_query($conn, "SELECT id FROM script_tb WHERE user_id=$user_id");
-	
-	if ($user_scripts->num_rows > 0) {
-		$user_totalscripts = $user_scripts->num_rows;
-	}
-	else{
-		$user_totalscripts = 0;
-	}
 	// Box i siden på main dashboard
 	$userMsg = 10;
 	$userBoughtScripts = 5;
 	$userSoldScripts = 4;
 	$userIncome = 100;
-
+	$user_totalscripts = 0;
 	// Box under billede
 	$userReputation = 10;
 	$userScripts = $userScriptCount;
@@ -74,7 +56,7 @@
 		else{
 			try
 			{
-				if($script->scriptApply($scrName,$scrDescription,$scrFeatures,$scrGame,$scrPrice))
+				if($mod->scriptApply($scrName,$scrDescription,$scrFeatures,$scrGame,$scrPrice))
 				{
 	
 				}
@@ -162,7 +144,7 @@
 													<div class="col-sm-3">
 														<div class="panel panel-default">
                                                         
-														<img class="img-thumbnail" src="data:image/jpeg;base64,<?php print(base64_encode($user_logo)); ?> ">
+														<img class="img-thumbnail" src="data:image/jpeg;base64,<?php base64_encode($userRow["user_logo"]);?>">
 														<button class="btn btn-default">Change Picture</button>
 														</div>
 														<ul>
@@ -225,7 +207,7 @@
 											</h2>
 										</center>
 										<hr>	
-										<?php include 'includes/data/users/sold_script.php'; ?>	
+										<?php $mod->userScriptPost($user_id); ?>	
 										
                     					
 
@@ -239,7 +221,7 @@
 										</center>
 										<hr>																					
 											<div class="col-lg-12">
-												<?php include 'includes/data/users/bought_script.php';?>
+												<?php $mod->userBoughtMod($user_id);?>
 											</div>
 									</div>
                                     
