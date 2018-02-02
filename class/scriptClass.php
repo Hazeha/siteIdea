@@ -310,7 +310,7 @@
 				echo '
 				<div class="media">
                     <a class="pull-left" href="#">
-					<img alt="" class="img-thumbnail" height="128px" width="128px" src="data:image/jpeg;base64,'. base64_encode($userPost["user_logo"]) .'">
+					<img alt="" class="img-thumbnail" height="100px" width="100px" src="data:image/jpeg;base64,'. base64_encode($userPost["user_logo"]) .'">
 					</a>
                     
                     <div class="media-body">
@@ -413,6 +413,35 @@
 		public function saleCount($modID)
 		{
 			$sales = $this->conn->query("SELECT count(*) FROM modsales_tb WHERE mod_id=$modID")->fetchColumn();
+			return $sales;
+		}
+
+		//////////////////////DashBoard
+		public function modCount($userID)
+		{
+			$mods = $this->conn->query("SELECT count(*) FROM script_tb WHERE user_id=$userID")->fetchColumn();
+			return $mods;
+		}
+		public function buyCount($userID)
+		{
+			$buys = $this->conn->query("SELECT count(*) FROM modsales_tb WHERE user_id=$userID")->fetchColumn();
+			return $buys;
+		}
+		public function totalSale($userID)
+		{
+			$totalSales = 0;
+			$totalIncome = 0;
+			$mods = $this->conn->prepare("SELECT * FROM script_tb WHERE user_id=?");
+			$mods->execute([$userID]);
+			$mod = $mods->fetchAll();
+
+			foreach($mod as $post)
+			{
+				$modSales = $this->saleCount($post["id"]);
+				$totalSales = $totalSales + $modSales;
+				$totalIncome = $totalIncome + ($modSales * $post["price"]);
+			}
+			$sales = array($totalIncome, $totalSales);
 			return $sales;
 		}
 		/*

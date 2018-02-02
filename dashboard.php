@@ -11,21 +11,13 @@
 	$stmt->execute(array(":user_id"=>$user_id));	
 	$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
 
-	// User Script Counter Skal laves om til en function 
-	$userScriptCount = 2;
+	$userScripts = $mod->modCount($user_id);
+	$userBoughtScripts = $mod->buyCount($user_id);
+	$userSoldScripts = $mod->totalSale($user_id);
 
-	// Box i siden på main dashboard
-	$userMsg = 10;
-	$userBoughtScripts = 5;
-	$userSoldScripts = 4;
-	$userIncome = 100;
-	$user_totalscripts = 0;
-	// Box under billede
-	$userReputation = 10;
-	$userScripts = $userScriptCount;
 	$userRating = 4;
-
-
+	$userReputation = 10;
+	$userMsg = 10;
 
 	// Form ting til apply Script
 
@@ -189,8 +181,8 @@
 														
 														<a class="list-group-item" href="#"><i class="fa fa-shopping-cart fa-fw"></i> Brought Scripts <span class="pull-right text-muted small"><em><?php print($userBoughtScripts);?></em></span>
 														</a> 
-														<a class="list-group-item" href="#"><i class="fa fa-shopping-cart fa-fw"></i> Sold Scripts <span class="pull-right text-muted small"><em><?php print($userSoldScripts);?></em></span></a> 
-														<a class="list-group-item" href="#"><i class="fa fa-money fa-fw"></i> Payments <span class="pull-right text-muted small"><em><?php print($userIncome);?>  <i class="fa fa-usd fa-fw"></i> </em></span>
+														<a class="list-group-item" href="#"><i class="fa fa-shopping-cart fa-fw"></i> Sold Scripts <span class="pull-right text-muted small"><em><?php print($userSoldScripts[1]);?></em></span></a> 
+														<a class="list-group-item" href="#"><i class="fa fa-money fa-fw"></i> Payments <span class="pull-right text-muted small"><em><?php print($userSoldScripts[0]);?>  <i class="fa fa-usd fa-fw"></i> </em></span>
 														</a>
 													</div>
 												</div><!-- /.panel-body -->
